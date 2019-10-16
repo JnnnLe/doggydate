@@ -5,13 +5,11 @@ Plan a doggy date for your beloved and adopt a pet while you're at it. A MERN st
 ## Installation 
 Use the package managers [npm](https://www.npmjs.com) or [yarn](https://yarnpkg.com/lang/en/) <br>
 
-Installing dependencies
-  ``` 
-  yarn install ```
+Installing dependencies <br>
+  ``` yarn install ```
 
-  Start server
-  ``` 
-  yarn dev ```
+  Start server <br>
+  ``` yarn dev ```
 ## Author and acknowledgements
 Author: [Jennifer Lê Jowett](https://github.com/jnnnle) <br>
 Like a raising a baby, this passion project could not be possible with the help of countless friends and mentors. <br>
