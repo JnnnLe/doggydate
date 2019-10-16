@@ -11,7 +11,6 @@ Installing dependencies <br>
   Start server <br>
   ``` yarn dev ```
 ## Author and acknowledgements
-Author: [Jennifer Lê Jowett](https://github.com/jnnnle) <br>
 Like a raising a baby, this passion project could not be possible with the help of countless friends and mentors. <br>
 Thank you to [Nic](https://github.com/nlacock), [Scott Moss](https://github.com/Hendrixer), [Frontend Masters](https://github.com/FrontendMasters) and many more to be added.
 
