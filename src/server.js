@@ -22,7 +22,7 @@ app.post('/data', (req, res) => {
   res.status(200).end()
 })
 
-export const start = () => { 
+export const start = () => {
   app.listen(port, () => {
     console.log('Server on port 3000')
   })
