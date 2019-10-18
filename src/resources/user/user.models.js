@@ -2,7 +2,7 @@ import mongoose from 'mongoose'
 import bcrypt from 'bcrypt'
 
 const userSchema = new mongoose.Schema({
-  userToken: { 
+  userToken: {
     // Todo: figure out how to generate token
     type: String,
     required: true,
@@ -36,8 +36,9 @@ const userSchema = new mongoose.Schema({
     // Mixed data types, Google might send it back in json
   },
   pets: {
-    type: Object
-    // Todo: mixed data types, add pet schema table here
+    type: mongoose.SchemaTypes.ObjectId,
+    ref: 'pet',
+    required: true
   }
 })
 
