@@ -13,6 +13,8 @@ var _morgan = _interopRequireDefault(require("morgan"));
 
 var _cors = _interopRequireDefault(require("cors"));
 
+var _user = _interopRequireDefault(require("./resources/user/user.router"));
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 let port = 3000;
@@ -25,6 +27,7 @@ app.use((0, _bodyParser.urlencoded)({
   extended: true
 }));
 app.use((0, _morgan.default)('dev'));
+app.use('/api/user', _user.default);
 app.get('/data', (req, res) => {
   res.json({
     message: "Jennifer Lê Jowett's server is running!"
