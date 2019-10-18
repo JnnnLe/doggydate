@@ -2,7 +2,8 @@ import mongoose from 'mongoose'
 import bcrypt from 'bcrypt'
 
 const userSchema = new mongoose.Schema({
-  userToken: {
+  userToken: { 
+    // Todo: figure out how to generate token
     type: String,
     required: true,
     unique: true,
@@ -31,11 +32,12 @@ const userSchema = new mongoose.Schema({
   },
   GoogleCalendarAvailability: {
     type: Object
-    // ? Mixed data types, Google might send it back in json
+    // Todo: Store calendar
+    // Mixed data types, Google might send it back in json
   },
   pets: {
     type: Object
-    // mixed data types, add table here
+    // Todo: mixed data types, add pet schema table here
   }
 })
 
