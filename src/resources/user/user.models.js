@@ -1,4 +1,5 @@
 import mongoose from 'mongoose'
+import bcrypt from 'bcrypt'
 
 const userSchema = new mongoose.Schema({
   userToken: {
@@ -19,6 +20,9 @@ const userSchema = new mongoose.Schema({
     unique: true,
     trim: true
   },
+  password: {
+    type: String
+  },
   location: {
     type: String
   },
@@ -27,13 +31,40 @@ const userSchema = new mongoose.Schema({
   },
   GoogleCalendarAvailability: {
     type: Object
-    // Mixed data types, Google might send it back in json
+    // ? Mixed data types, Google might send it back in json
   },
   pets: {
     type: Object
-    // mixed data types
-    // be sure to reference pet and use compound index
+    // mixed data types, add table here
   }
 })
+
+userSchema.pre('save', function(next) {
+  if (!this.isModified('password')) {
+    return next()
+  }
+
+  bcrypt.hash(this.password, 8, (err, hash) => {
+    if (err) {
+      return next(err)
+    }
+
+    this.password = hash
+    next()
+  })
+})
+
+userSchema.methods.checkPassword = function(password) {
+  const passwordHash = this.password
+  return new Promise((resolve, reject) => {
+    bcrypt.compare(password, passwordHash, (err, same) => {
+      if (err) {
+        return reject(err)
+      }
+
+      resolve(same)
+    })
+  })
+}
 
 export const User = mongoose.model('user', userSchema)
