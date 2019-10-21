@@ -27,6 +27,6 @@ app.post('/data', (req, res) => {
 
 export const start = () => {
   app.listen(port, () => {
-    console.log('Server on port 3000')
+    console.log('doggy date server on port 3000')
   })
 }
