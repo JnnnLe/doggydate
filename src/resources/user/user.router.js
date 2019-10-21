@@ -6,11 +6,13 @@ const controller = (req, res) => {
 const router = Router()
 
 router
+  // /api/...
   .route('/')
   .get(controller)
   .post(controller)
 
 router
+  // /api/:id...
   .route('/:id')
   .put(controller)
   .delete(controller)
