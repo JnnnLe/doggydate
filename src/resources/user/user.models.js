@@ -70,4 +70,7 @@ userSchema.methods.checkPassword = function(password) {
   })
 }
 
+// compound index, sures that the combination of required fields are unique
+userSchema.index({ username: 1, email: 1 }, { unique: true })
+
 export const User = mongoose.model('user', userSchema)
