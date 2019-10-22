@@ -18,11 +18,6 @@ const petSchema = new mongoose.Schema({
     trim: true
   },
   age: Number,
-  energyLevel: {
-    type: String,
-    required: true,
-    enum: ['Mellow', 'Likes to play', 'Active', 'Hyper Active']
-  },
   weight: Number,
   shots: {
     type: Boolean,
@@ -32,6 +27,19 @@ const petSchema = new mongoose.Schema({
   fixed: {
     type: Boolean,
     required: true,
+    default: false
+  },
+  energyLevel: {
+    type: String,
+    required: true,
+    enum: ['Mellow', 'Likes to play', 'Active', 'Hyper Active']
+  },
+  heatSensitivity: {
+    type: Boolean,
+    default: false
+  },
+  waterCompatable: {
+    type: Boolean,
     default: false
   },
   Availability: {
