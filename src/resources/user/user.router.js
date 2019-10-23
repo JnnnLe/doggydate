@@ -1,7 +1,7 @@
 import { Router } from 'express'
 
 const controller = (req, res) => {
-  res.send({ message: 'You can create your own happy' })
+  res.send({ message: 'The way that you habitually think determines the way that you habitually feel.' })
 }
 const router = Router()
 

@@ -16,11 +16,11 @@ app.use(morgan('dev'))
 
 app.use('/api/user', router)
 
-app.get('/data', (req, res) => {
+app.get('/api', (req, res) => {
   res.json({ message: "Jennifer Lê Jowett's server is running!" })
 })
 
-app.post('/data', (req, res) => {
+app.post('/api', (req, res) => {
   console.log(req.body)
   res.status(200).end()
 })
