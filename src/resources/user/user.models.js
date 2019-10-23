@@ -2,13 +2,13 @@ import mongoose from 'mongoose'
 import bcrypt from 'bcrypt'
 
 const userSchema = new mongoose.Schema({
-  userToken: {
-    // Todo: figure out how to generate token
-    type: String,
-    required: true,
-    unique: true,
-    trim: true
-  },
+  // userToken: {
+  //   // Todo: figure out how to generate token
+  //   type: String,
+  //   required: true,
+  //   unique: true,
+  //   trim: true
+  // },
   username: {
     type: String,
     required: true,
