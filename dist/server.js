@@ -40,7 +40,7 @@ app.post('/data', (req, res) => {
 
 const start = () => {
   app.listen(port, () => {
-    console.log('Server on port 3000');
+    console.log('doggydate server on port 3000');
   });
 };
 
