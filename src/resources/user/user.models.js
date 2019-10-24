@@ -37,8 +37,8 @@ const userSchema = new mongoose.Schema({
   },
   pets: {
     type: mongoose.SchemaTypes.ObjectId,
-    ref: 'pet',
-    required: true
+    ref: 'pet'
+    // required: true
   }
 })
 
