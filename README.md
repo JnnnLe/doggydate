@@ -11,6 +11,8 @@ Installing dependencies <br>
   Start server <br>
   ``` yarn dev ```
 
+Establish a connection with MongoDB Atlas 
+
 ## Author and acknowledgements
 Like a raising a baby, my passion project could not be possible with the help of countless friends, mentors and countless open sources. <br>
 Thank you to [Nic](https://github.com/nlacock), [Scott Moss](https://github.com/Hendrixer), more mentors and friends to be added. <br>
