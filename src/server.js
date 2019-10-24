@@ -3,7 +3,7 @@ import { json, urlencoded } from 'body-parser'
 import morgan from 'morgan'
 import cors from 'cors'
 let port = 3000
-import router from './resources/user/user.router'
+import userRouter from './resources/user/user.router'
 
 export const app = express()
 
@@ -14,16 +14,11 @@ app.use(json())
 app.use(urlencoded({ extended: true }))
 app.use(morgan('dev'))
 
-app.use('/api/user', router)
+app.use('/api/user', userRouter)
 
-// app.get('/api', (req, res) => {
-//   res.json({ message: "Jennifer Lê Jowett's server is running!" })
-// })
+app.post('/api/user', userRouter)
 
-app.post('/api', (req, res) => {
-  res.send(req.body)
-  res.status(200).end()
-})
+app.get('/api/user', userRouter)
 
 export const start = () => {
   app.listen(port, () => {

@@ -27,14 +27,9 @@ app.use((0, _bodyParser.urlencoded)({
   extended: true
 }));
 app.use((0, _morgan.default)('dev'));
-app.use('/api/user', _user.default); // app.get('/api', (req, res) => {
-//   res.json({ message: "Jennifer Lê Jowett's server is running!" })
-// })
-
-app.post('/api', (req, res) => {
-  res.send(req.body);
-  res.status(200).end();
-});
+app.use('/api/user', _user.default);
+app.post('/api/user', _user.default);
+app.get('/api/user', _user.default);
 
 const start = () => {
   app.listen(port, () => {

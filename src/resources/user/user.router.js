@@ -19,6 +19,7 @@ const createOne = async (req, res) => {
     location: req.body.location
   })
   res.send(user)
+  res.status(200).end()
 }
 
 // TODO: get user and get all users
