@@ -9,6 +9,11 @@ mongoose.connect(uri, { useNewUrlParser: true, useUnifiedTopology: true })
 const router = Router()
 
 const createOne = async (req, res) => {
+  // if field(s) is/are not met
+  if (!req.body.username || !req.body.email || !req.body.password || !req.body.location) {
+    return res.send('Please include a username, email, password, and location').status(400).end()
+  }
+
   const user =  await User.create({
     username: req.body.username,
     email: req.body.email,
@@ -19,11 +24,15 @@ const createOne = async (req, res) => {
   res.status(200).end()
 }
 
-// TODO: get user and get all users
 const getMany = async (req, res) => {
   const user = await User.find({})
-  res.send(user)
-  res.status(200).end()
+  if (user.length) {
+    res.send(user)
+    res.status(200).end()
+  } else {
+    res.send('Sorry, you do not have any users.')
+    .status(400).end()
+  }
 }
 
 router
