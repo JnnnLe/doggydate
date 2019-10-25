@@ -14,10 +14,13 @@ app.use(json())
 app.use(urlencoded({ extended: true }))
 app.use(morgan('dev'))
 
+// initiate the start of the userRouters
 app.use('/api/user', userRouter)
 
+// add a new user
 app.post('/api/user', userRouter)
 
+// get all users
 app.get('/api/user', userRouter)
 
 export const start = () => {

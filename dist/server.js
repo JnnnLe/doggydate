@@ -26,9 +26,12 @@ app.use((0, _bodyParser.json)());
 app.use((0, _bodyParser.urlencoded)({
   extended: true
 }));
-app.use((0, _morgan.default)('dev'));
-app.use('/api/user', _user.default);
-app.post('/api/user', _user.default);
+app.use((0, _morgan.default)('dev')); // initiate the start of the userRouters
+
+app.use('/api/user', _user.default); // add a new user
+
+app.post('/api/user', _user.default); // get all users
+
 app.get('/api/user', _user.default);
 
 const start = () => {
