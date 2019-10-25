@@ -8,10 +8,8 @@ Use the package managers [npm](https://www.npmjs.com) or [yarn](https://yarnpkg.
 Installing dependencies <br>
   ``` yarn install ```
 
-  Start server <br>
+  Start server and establish connection to MongoDB, ignore depreciation warning in console.<br>
   ``` yarn dev ```
-
-Establish a connection with MongoDB Atlas 
 
 ## Author and acknowledgements
 Like a raising a baby, my passion project could not be possible with the help of countless friends, mentors and countless open sources. <br>
