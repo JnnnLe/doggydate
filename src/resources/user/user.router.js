@@ -7,10 +7,6 @@ const uri = `mongodb+srv://${process.env.DB_USER}:${process.env.DB_PASSWORD}@dog
 mongoose.connect(uri, { useNewUrlParser: true, useUnifiedTopology: true })
 
 const router = Router()
-const controller = (req, res) => {
-  res.send({ message: 'The way that you habitually think determines the way that you habitually feel.' })
-}
-
 
 const createOne = async (req, res) => {
   const user =  await User.create({
@@ -24,11 +20,16 @@ const createOne = async (req, res) => {
 }
 
 // TODO: get user and get all users
+const getMany = async (req, res) => {
+  const user = await User.find({})
+  res.send(user)
+  res.status(200).end()
+}
 
 router
   // /api/user...
   .route('/')
-  .get(controller)
+  .get(getMany)
   .post(createOne)
 
 router
