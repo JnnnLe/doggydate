@@ -6,10 +6,21 @@ A MERN stack application where pet owners can schedule a pet date for their belo
 Use the package managers [npm](https://www.npmjs.com) or [yarn](https://yarnpkg.com/lang/en/) <br>
 
 Installing dependencies <br>
+Back-end: 
   ``` yarn install ```
 
-  Start server and establish connection to MongoDB, ignore depreciation warning in console.<br>
-  ``` yarn dev ```
+  Start server and establish connection to MongoDB, ignore depreciation warning in console.
+  ``` yarn dev ``` 
+
+Front-end:
+  ```cd client```
+
+  Install your client side dependencies
+  ```yarn install``
+
+  Start your frontend server
+  ```yarn start```
+
 
 ## Author and acknowledgements
 Like a raising a baby, my passion project could not be possible with the help of countless friends, mentors and countless open sources. <br>
