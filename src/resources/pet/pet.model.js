@@ -1,10 +1,6 @@
 import mongoose from 'mongoose'
 
 const petSchema = new mongoose.Schema({
-  pet_id: {
-    type: String,
-    unique: true
-  },
   petName: {
     type: String,
     required: true,
@@ -42,7 +38,7 @@ const petSchema = new mongoose.Schema({
     type: Boolean,
     default: false
   },
-  Availability: {
+  availability: {
     type: mongoose.SchemaTypes.ObjectId,
     ref: 'user',
     required: true
