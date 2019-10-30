@@ -38,7 +38,7 @@ const petSchema = new mongoose.Schema({
     type: Boolean,
     default: false
   },
-  waterCompatable: {
+  waterCompatibility: {
     type: Boolean,
     default: false
   },
