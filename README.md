@@ -20,7 +20,7 @@ Front-end:
 
   Start your frontend server
   ```yarn start```
-
+Client server will ask you if using Port 3001 is okay because Port 3000 is in use, confirm 'yes'
 
 ## Author and acknowledgements
 Like a raising a baby, my passion project could not be possible with the help of countless friends, mentors and countless open sources. <br>
