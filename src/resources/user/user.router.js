@@ -11,19 +11,19 @@ const router = Router()
 const createOne = async (req, res) => {
   // if field(s) is/are not met
   if (!req.body.username || !req.body.email || !req.body.password || !req.body.location) {
-    // res.send('Please include a username, email, password, and location')
-    res.sendStatus(400).end()
+    res.send('Please include a username, email, password, and location').
+    // I don't understand why the status code does not work
+    status(400).end()
+  } else {
+    const user =  await User.create({
+      username: req.body.username,
+      email: req.body.email,
+      password: req.body.password,
+      location: req.body.location
+    })
+    res.send(user)
+    res.status(200).end()
   }
-
-  const user =  await User.create({
-    username: req.body.username,
-    email: req.body.email,
-    password: req.body.password,
-    location: req.body.location
-  })
-  res.send(user)
-  res.status(200).end()
-  // console.log('Inside of user.router', req.body)
 }
 
 const getMany = async (req, res) => {
