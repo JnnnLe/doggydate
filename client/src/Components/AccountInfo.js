@@ -1,6 +1,7 @@
-import React from 'react'
+import React, { useState, useEffect } from 'react'
+import axios from 'axios'
 
-function AccountInfo () {
+const AccountInfo = ()=> {
   const [state, setState] = React.useState({
     username: '',
     email: '',
@@ -19,7 +20,7 @@ function AccountInfo () {
     // Availability: ''
   })
 
-  function handleChange(evt) {
+  const handleChange = evt => {
     const value = evt.target.value;
     setState({
       ...state,
@@ -27,8 +28,16 @@ function AccountInfo () {
     });
   }
 
+  const handleSubmit = async (event) => {
+    event.preventDefault()
+    // send this info to endpoint, add http: '/api/user' 
+    let newUser = await axios.post('http://localhost:3000/api/user', state)
+    console.log(newUser)
+
+  }
+
   return (
-    <form>
+    <form onSubmit={handleSubmit}>
       <label>
         Username
         <input
@@ -65,6 +74,7 @@ function AccountInfo () {
           onChange={handleChange}
         />
       </label>
+      <input type="submit" />
     </form>
   );
 }
