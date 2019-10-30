@@ -11,7 +11,8 @@ const router = Router()
 const createOne = async (req, res) => {
   // if field(s) is/are not met
   if (!req.body.username || !req.body.email || !req.body.password || !req.body.location) {
-    return res.send('Please include a username, email, password, and location').status(400).end()
+    // res.send('Please include a username, email, password, and location')
+    res.sendStatus(400).end()
   }
 
   const user =  await User.create({
@@ -22,6 +23,7 @@ const createOne = async (req, res) => {
   })
   res.send(user)
   res.status(200).end()
+  // console.log('Inside of user.router', req.body)
 }
 
 const getMany = async (req, res) => {
