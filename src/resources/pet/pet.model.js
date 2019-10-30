@@ -19,7 +19,7 @@ const petSchema = new mongoose.Schema({
   },
   age: Number,
   weight: Number,
-  shots: {
+  vaccinated: {
     type: Boolean,
     required: true,
     default: false
