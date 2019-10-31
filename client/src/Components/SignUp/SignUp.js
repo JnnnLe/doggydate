@@ -1,12 +1,5 @@
 import React, { useState, useEffect } from 'react'
 import axios from 'axios'
-import {
-  FormControl,
-  FormLabel,
-  FormErrorMessage,
-  FormHelperText,
-} from "@chakra-ui/core";
-import { Formik, Form, Field } from 'formik';
 
 function Signup () {
   const [state, setState] = useState({
@@ -23,6 +16,14 @@ function Signup () {
       ...state,
       [evt.target.name]: value
     });
+  }
+
+  const  validateName = value => {
+    let error;
+    if (!value) {
+      error = "Name is required";
+    }
+    return error;
   }
 
   const handleSubmit = async (event) => {
