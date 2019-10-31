@@ -10,7 +10,7 @@ const router = Router()
 
 const createOne = async (req, res) => {
   // if field(s) is/are not met
-  if (!req.body.username || !req.body.email || !req.body.password || !req.body.location) {
+  if (!req.body.username || !req.body.email || !req.body.password) {
     res.send('Please include a username, email, password, and location').
     // I don't understand why the status code does not work
     status(400).end()

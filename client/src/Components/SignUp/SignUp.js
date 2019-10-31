@@ -1,23 +1,17 @@
 import React, { useState, useEffect } from 'react'
 import axios from 'axios'
+import {
+  FormControl,
+  FormLabel,
+  FormErrorMessage,
+  FormHelperText,
+} from "@chakra-ui/core";
 
-function UserInfo () {
+function Signup () {
   const [state, setState] = useState({
     username: '',
     email: '',
     password: '',
-    location: ''
-    // petName: '',
-    // petImg: '',
-    // breed: '',
-    // age: '',
-    // weight: '',
-    // fixed: '',
-    // vaccinated: '',
-    // energyLevel: '',
-    // heatSensitivity: '',
-    // waterCompatibility: '',
-    // Availability: ''
   })
 
   const [err, setError] = useState('')
@@ -73,16 +67,7 @@ function UserInfo () {
             onChange={handleChange}
           />
         </label>
-        <label>
-          Location
-          <input
-            type="text"
-            name="location"
-            value={state.location}
-            onChange={handleChange}
-          />
-        </label>
-        <input type="submit" />
+        <input type="submit" value="Sign Up"/>
       </form>
       {(err) ?
         <div>{err}</div> : null
@@ -91,4 +76,4 @@ function UserInfo () {
   );
 }
 
-export default UserInfo
+export default Signup

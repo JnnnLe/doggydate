@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import axios from 'axios'
 
+//TODO: this should all be related to the Pet schema and partial data used from User schema. Establish a route and React route it to my backend's API endpoint
 function PetInfo () {
   const [state, setState] = useState({
     username: '',
@@ -47,38 +48,47 @@ function PetInfo () {
     <div>
       <form onSubmit={handleSubmit}>
         <label>
-          Username
+          Pet Name
           <input
             type="text"
-            name="username"
-            value={state.username}
+            name="petName"
+            value={state.petName}
             onChange={handleChange}
           />
         </label>
         <label>
-          Email
+          Photo
           <input
             type="text"
-            name="email"
-            value={state.email}
+            name="photo"
+            value={state.photo}
             onChange={handleChange}
           />
         </label>
         <label>
-          Password
+          Breed
           <input
             type="text"
-            name="password"
-            value={state.password}
+            name="breed"
+            value={state.breed}
             onChange={handleChange}
           />
         </label>
         <label>
-          Location
+          Age
           <input
             type="text"
-            name="location"
-            value={state.location}
+            name="age"
+            value={state.age}
+            onChange={handleChange}
+          />
+        </label>
+        <label>
+          Age
+          <input
+            type="text"
+            name="age"
+            value={state.age}
             onChange={handleChange}
           />
         </label>
