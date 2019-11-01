@@ -12,21 +12,12 @@ const createNewUser = async (req, res) => {
   // assuming register new user, so check to see if credentials already exists
   let emailExisitance = await User.find({ email: req.body.email })
   if (!emailExisitance.length) {
-    // check username
-    let usernameExisitance = await User.find({ username: req.body.username })
-    if (!usernameExisitance.length) {
-      const user = await User.create({
-        username: req.body.username,
-        email: req.body.email,
-        password: req.body.password,
-        location: req.body.location
-      })
-      return res.send(user)
-    } else {
-      return res.send("Username is already taken.")
-    } 
+    const user = await User.create({
+      email: req.body.email,
+      password: req.body.password,
+    })
   } else {
-    return res.send("Email is already taken.")
+    return res.send("Email is already taken.").status(400)
   }
 }
 
