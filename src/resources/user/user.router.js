@@ -8,21 +8,25 @@ mongoose.connect(uri, { useNewUrlParser: true, useUnifiedTopology: true })
 
 const router = Router()
 
-const createOne = async (req, res) => {
-  // if field(s) is/are not met
-  if (!req.body.username || !req.body.email || !req.body.password) {
-    res.send('Please include a username, email, password, and location').
-    // I don't understand why the status code does not work
-    status(400).end()
+const createNewUser = async (req, res) => {
+  // assuming register new user, so check to see if credentials already exists
+  let emailExisitance = await User.find({ email: req.body.email })
+  if (!emailExisitance.length) {
+    // check username
+    let usernameExisitance = await User.find({ username: req.body.username })
+    if (!usernameExisitance.length) {
+      const user = await User.create({
+        username: req.body.username,
+        email: req.body.email,
+        password: req.body.password,
+        location: req.body.location
+      })
+      return res.send(user)
+    } else {
+      return res.send("Username is already taken.")
+    } 
   } else {
-    const user =  await User.create({
-      username: req.body.username,
-      email: req.body.email,
-      password: req.body.password,
-      location: req.body.location
-    })
-    res.send(user)
-    res.status(200).end()
+    return res.send("Email is already taken.")
   }
 }
 
@@ -41,7 +45,7 @@ router
   // /api/user...
   .route('/')
   .get(getMany)
-  .post(createOne)
+  .post(createNewUser)
 
 router
   // /api/user:id...
