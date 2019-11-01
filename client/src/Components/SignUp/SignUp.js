@@ -1,40 +1,21 @@
 import React, { useState, useEffect } from 'react'
 import axios from 'axios'
+import { BrowserRouter as Router, Link } from 'react-router-dom'
 
 function Signup () {
-  const [state, setState] = useState({
-    username: '',
-    email: '',
-    password: '',
-  })
-
-  const [err, setError] = useState('')
-
-  const handleChange = evt => {
-    const value = evt.target.value;
-    setState({
-      ...state,
-      [evt.target.name]: value
-    });
-  }
-
-  const  validateName = value => {
-    let error;
-    if (!value) {
-      error = "Name is required";
-    }
-    return error;
-  }
+  const [ email, setEmail ] = useState('')   
+  const [ password, setPassword ] = useState('') 
+  const [ err, setError ] = useState('')
 
   const handleSubmit = async (event) => {
     event.preventDefault()
     // send this info to endpoint, add http to prevent cross origin errors '/api/user' 
-    let newUser = await axios.post('http://localhost:3000/api/user', state)
 
-    if (newUser.data == 'Please include a username, email, password, and location') {
-      //saved in state
+    let newUser = await axios.post('http://localhost:3000/api/user', { email, password })
+    if (newUser.data = 'Email is already taken.') {
       setError(newUser.data)
-    } 
+    }
+   
 
     // once successful redirect user to feed page
   }
@@ -43,21 +24,13 @@ function Signup () {
     <div>
       <form onSubmit={handleSubmit}>
         <label>
-          Username
-          <input
-            type="text"
-            name="username"
-            value={state.username}
-            onChange={handleChange}
-          />
-        </label>
-        <label>
           Email
           <input
+            label="Email"
             type="text"
             name="email"
-            value={state.email}
-            onChange={handleChange}
+            value={email}
+            onChange={ (event) => { setEmail(event.target.value)} }
           />
         </label>
         <label>
@@ -65,11 +38,11 @@ function Signup () {
           <input
             type="text"
             name="password"
-            value={state.password}
-            onChange={handleChange}
+            value={password}
+            onChange={ (event) => { setPassword(event.target.value)} }
           />
         </label>
-        <input type="submit" value="Sign Up"/>
+          <input type="submit" value="Sign Up"/>
       </form>
       {(err) ?
         <div>{err}</div> : null
