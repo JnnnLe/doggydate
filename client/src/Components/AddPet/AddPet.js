@@ -7,21 +7,18 @@ import { FormLabel } from '@material-ui/core';
 import RadioGroup from '@material-ui/core/RadioGroup';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
 
-// import RadioButtonUncheckedIcon from '@material-ui/icons/RadioButtonUnchecked';
-// import RadioButtonCheckedIcon from '@material-ui/icons/RadioButtonChecked';
-
 const AddPet = () => {
-  const [petName, setPetName] = useState('')
-  const [imgURL, setImgURL] = useState('')  
-  const [breed, setBreed] = useState('')
-  const [age, setAge] = useState('')
-  const [weight, setWeight] = useState('')
-  const [vaccinated, setVaccinated] = useState('')
-  const [fixed, setFixed] = useState('')
-  const [energyLevel, setEnergyLevel] = useState('')
-  const [heatSensitivity, setHeatSensitivity] = useState('')
-  const [waterCompatibility, setWaterCompatibility] = useState('')
-  const [selectedValue, setSelectedValue] = React.useState('a');
+  const [ petName, setPetName ] = useState('')
+  const [ imgURL, setImgURL ] = useState('')  
+  const [ breed, setBreed ] = useState('')
+  const [ age, setAge ] = useState('')
+  const [ weight, setWeight ] = useState('')
+  const [ vaccinated, setVaccinated ] = useState('')
+  const [ fixed, setFixed ] = useState('')
+  const [ energyLevel, setEnergyLevel ] = useState('')
+  const [ heatSensitivity, setHeatSensitivity ] = useState('')
+  const [ waterCompatibility, setWaterCompatibility ] = useState('')
+  const [ selectedValue, setSelectedValue ] = React.useState('a');
 
   const handleSubmit = async event => {
     let newPet = axios.post('http://localhost:3000/api/user/pet', {
