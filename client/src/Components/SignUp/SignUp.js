@@ -11,7 +11,7 @@ function Signup() {
   const handleSubmit = async event => {
     event.preventDefault();
     // send this info to endpoint, add http to prevent cross origin errors '/api/user'
-    let newUser = await axios.post('http://localhost:3000/api/user', {
+    let newUser = await axios.post('http://localhost:3000/api/auth/register', {
       email,
       password
     });

@@ -3,7 +3,7 @@ import { json, urlencoded } from 'body-parser'
 import morgan from 'morgan'
 import cors from 'cors'
 let port = 3000
-import userRouter from './resources/user/user.router'
+import authRouter from './resources/user/user.router'
 
 export const app = express()
 
@@ -14,14 +14,14 @@ app.use(json())
 app.use(urlencoded({ extended: true }))
 app.use(morgan('dev'))
 
-// initiate the start of the userRouters
-app.use('/api/user', userRouter)
+// initiate the start of the authRouters
+app.use('/api/auth', authRouter)
 
 // add a new user
-app.post('/api/user', userRouter)
+app.post('/api/auth', authRouter)
 
 // get all users
-app.get('/api/user', userRouter)
+app.get('/api/auth', authRouter)
 
 export const start = () => {
   app.listen(port, () => {

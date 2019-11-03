@@ -26,13 +26,13 @@ app.use((0, _bodyParser.json)());
 app.use((0, _bodyParser.urlencoded)({
   extended: true
 }));
-app.use((0, _morgan.default)('dev')); // initiate the start of the userRouters
+app.use((0, _morgan.default)('dev')); // initiate the start of the authRouters
 
-app.use('/api/user', _user.default); // add a new user
+app.use('/api/auth', _user.default); // add a new user
 
-app.post('/api/user', _user.default); // get all users
+app.post('/api/auth', _user.default); // get all users
 
-app.get('/api/user', _user.default);
+app.get('/api/auth', _user.default);
 
 const start = () => {
   app.listen(port, () => {
