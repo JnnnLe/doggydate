@@ -11,9 +11,6 @@ function App() {
 
   return (
     <div className="App">
-      <h1>doggydate 
-        <span role="img" aria-label="emoji"> 🐶</span>
-      </h1>
       { !isAuthenicated ? <SignUp /> : <Feed /> }
     </div>
   )

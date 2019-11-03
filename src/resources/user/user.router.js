@@ -9,6 +9,7 @@ mongoose.connect(uri, { useNewUrlParser: true, useUnifiedTopology: true })
 const router = Router()
 
 const createNewUser = async (req, res) => {
+  console.log('Enter')
   // assuming register new user, so check to see if credentials already exists
   let emailExisitance = await User.find({ email: req.body.email })
   if (!emailExisitance.length) {
@@ -16,19 +17,20 @@ const createNewUser = async (req, res) => {
       email: req.body.email,
       password: req.body.password,
     })
+    return res.send('Success').end()
   } else {
-    return res.send("Email is already taken.").status(400)
+    return res.send("Email is already taken.")
   }
 }
 
 const getMany = async (req, res) => {
+  console.log('Getting')
   const user = await User.find({})
   if (user.length) {
     res.send(user)
     res.status(200).end()
   } else {
-    res.send('Sorry, you do not have any users.')
-    .status(400).end()
+    res.send('Sorry, you do not have any users.').status(400).end()
   }
 }
 

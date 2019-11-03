@@ -1,0 +1,24 @@
+.signUp {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  height: 100vh;
+}
+.signUpLeft {
+  align-self: center;
+  text-align: center;
+}
+.signUpHeader {
+  font-family: 'Tiempos Text';
+  font-size: 48px;
+}
+.signUpButton {
+  background-color: #c1f7f8 !important;
+}
+.signUpRight {
+  align-self: center;
+  height: 100vh;
+  background-image: url('../../shiba.gif');
+  background-size: cover;
+  background-position: center;
+  repeat-y: none;
+}
