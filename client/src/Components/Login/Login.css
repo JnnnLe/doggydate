@@ -1,0 +1,24 @@
+.login {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  height: 100vh;
+}
+.loginRight {
+  align-self: center;
+  text-align: center;
+}
+.loginHeader {
+  font-family: 'Tiempos Text';
+  font-size: 48px;
+}
+.loginButton {
+  background-color: #c1f7f8 !important;
+}
+.loginLeft {
+  align-self: center;
+  height: 100vh;
+  background-image: url('../../shiba.gif');
+  background-size: cover;
+  background-position: center;
+  repeat-y: none;
+}
