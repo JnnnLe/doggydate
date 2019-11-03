@@ -1,10 +1,6 @@
 import { Router } from 'express'
 import { User } from './user.model'
 import mongoose from 'mongoose'
-require('dotenv').config()
-
-const uri = `mongodb+srv://${process.env.DB_USER}:${process.env.DB_PASSWORD}@doggydate-biwhc.gcp.mongodb.net/api?retryWrites=true&w=majority`
-mongoose.connect(uri, { useNewUrlParser: true, useUnifiedTopology: true })
 
 const router = Router()
 
@@ -14,7 +10,6 @@ const findUserEmail = async (email) => {
 }
 
 const createNewUser = async (req, res) => {
-  // assuming register new user, so check to see if credentials already exists
   let emailExisitance = await findUserEmail(req.body.email)
   if (emailExisitance == "User was not found.") {
     return res.send("Email is already taken.")
@@ -41,19 +36,6 @@ const getMany = async (req, res) => {
     res.send('Sorry, you do not have any users.').status(400).end()
   }
 }
-
-// router
-//   // /api/auth...
-//   .route('/')
-//   .get(getMany)
-//   .post(createNewUser)
-
-// router
-//   // /api/user:id...
-//   .route('/:id')
-//   .put()
-//   .delete()
-//   .get()
 
 router 
   .route('/login')

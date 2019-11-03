@@ -1,6 +1,10 @@
 import mongoose from 'mongoose'
 
 const petSchema = new mongoose.Schema({
+  owner: {
+    id: String,
+    // required: true
+  },
   petName: {
     type: String,
     required: true,
@@ -40,8 +44,7 @@ const petSchema = new mongoose.Schema({
   },
   availability: {
     type: mongoose.SchemaTypes.ObjectId,
-    ref: 'user',
-    required: true
+    ref: 'user'
   }
 })
 
