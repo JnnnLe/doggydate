@@ -4,10 +4,11 @@ import { BrowserRouter as Router, Link } from 'react-router-dom';
 import './Login.css';
 import TextField from '@material-ui/core/TextField';
 import Button from '@material-ui/core/Button';
-function Login() {
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
-  const [err, setError] = useState('');
+
+const Login = () => {
+  const [ email, setEmail ] = useState('');
+  const [ password, setPassword ] = useState('');
+  const [ err, setError ] = useState('');
   const handleSubmit = async event => {
     event.preventDefault();
     // send this info to endpoint, add http to prevent cross origin errors '/api/user'
@@ -19,7 +20,8 @@ function Login() {
       setError(newUser.data);
     }
     // once successful redirect user to feed page
-  };
+  }
+  
   return (
     <div className="login">
       <div className="loginLeft" />

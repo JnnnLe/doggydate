@@ -8,7 +8,7 @@ import AddPet from './Components/AddPet/AddPet'
 // Todo: React router to link to Feed.js or any other views
 import { BrowserRouter as Router, Route, Link, Switch } from "react-router-dom"
 
-function App() {
+const App = () => {
   const [ isAuthenicated, setAuthentication ] = useState(false)
 
   return (

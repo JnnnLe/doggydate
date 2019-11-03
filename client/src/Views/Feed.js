@@ -4,7 +4,7 @@ import { BrowserRouter, Route, Link } from 'react-router-dom'
 import Card from '../Components/Card/Card'
 
 const Feed = () => {
-  const [ allPets, setAllPets] = useState([])
+  const [ allPets, setAllPets ] = useState([])
 
   const getAllPets = async () => {
     let pets = await axios.get('http://localhost:3000/api/user/pet')

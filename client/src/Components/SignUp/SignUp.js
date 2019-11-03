@@ -5,10 +5,10 @@ import './SignUp.css';
 import TextField from '@material-ui/core/TextField';
 import Button from '@material-ui/core/Button';
 
-function Signup() {
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
-  const [err, setError] = useState('');
+const Signup = () => {
+  const [ email, setEmail ] = useState('');
+  const [ password, setPassword ] = useState('');
+  const [ err, setError ] = useState('');
   const handleSubmit = async event => {
     event.preventDefault();
     // send this info to endpoint, add http to prevent cross origin errors '/api/user'
