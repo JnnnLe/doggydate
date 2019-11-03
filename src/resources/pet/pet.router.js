@@ -5,9 +5,9 @@ import { User } from '../user/user.model'
 const router = Router()
 
 const addPet = async (req, res) => {
-  let userId = req.body.id;
+  // To do: set up conditional for when the user is not found, to be updated when authentication is implemented
   const newPet = await Pet.create({
-    // To do: dynamic _id of user 
+    // To do: dynamic _id of user - Authenication needed for owner property
     owner: '5dbf1ce370ed9f5abafff4eb',
     petName: req.body.petName,
     imgURL: req.body.imgURL,
@@ -23,10 +23,8 @@ const addPet = async (req, res) => {
 }
 
 const getPets = async (req, res) => {
-  console.log('looking!')
-  Pet.find({}).exec()
-  .then(resp => res.json(resp))
-
+  let allPets = await Pet.find({}).exec()
+  return allPets.length ? res.send(allPets) : res.send('You have no pets.')
 }
 
 router 
