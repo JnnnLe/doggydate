@@ -4,6 +4,7 @@ import { BrowserRouter as Router, Link } from 'react-router-dom';
 import './SignUp.css';
 import TextField from '@material-ui/core/TextField';
 import Button from '@material-ui/core/Button';
+
 function Signup() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');

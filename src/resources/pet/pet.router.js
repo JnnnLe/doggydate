@@ -20,6 +20,7 @@ const addPet = async (req, res) => {
     heatSensitivity: req.body.heatSensitivity,
     waterCompatibility: req.body.waterCompatibility
   })
+  return res.send(newPet)
 }
 
 const getPets = async (req, res) => {
