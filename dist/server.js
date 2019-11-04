@@ -42,15 +42,13 @@ _mongoose.default.connect(uri, {
 }); // initiate the start of the router
 
 
-app.use('/api/auth', _user.default);
-app.use('/api/user', _pet.default);
+app.use('/api/auth', _user.default); // app.use('/api/user', petRouter) 
+
 app.post('/api/auth', _user.default); // add a new user
 
 app.get('/api/auth', _user.default); // get all users
-
-app.post('/api/user', _pet.default); // Add a new pet
-
-app.get('/api/user', _pet.default); // Get all pets in db
+// app.post('/api/user', petRouter) // Add a new pet
+// app.get('/api/user', petRouter) // Get all pets in db
 
 const start = () => {
   app.listen(port, () => {

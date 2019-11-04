@@ -6,13 +6,13 @@ const router = Router()
 
 const findUserEmail = async (email) => {
   let existingUser = await User.findOne({ email })
-  return existingUser ? existingUser : false
+  return existingUser == null ? existingUser : false
 }
 
 const createNewUser = async (req, res) => {
   let emailExisitance = await findUserEmail(req.body.email)
-  if (emailExisitance == "User was not found.") {
-    return res.send("Email is already taken.")
+  if (emailExisitance == false) {
+    return res.send("Email is already taken.").status(400).end()
   } else {
     const user = await User.create({
       email: req.body.email,

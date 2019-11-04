@@ -1,0 +1,9 @@
+.feed {
+  display: grid;
+  grid-template-columns: 1fr 2fr;
+}
+
+.nav {
+  display: flex;
+  background-color: #c1f7f8 !important;
+}

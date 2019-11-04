@@ -9,18 +9,25 @@ const Signup = () => {
   const [ email, setEmail ] = useState('');
   const [ password, setPassword ] = useState('');
   const [ err, setError ] = useState('');
+
   const handleSubmit = async event => {
+    console.log('_------ inside')
     event.preventDefault();
     // send this info to endpoint, add http to prevent cross origin errors '/api/user'
     let newUser = await axios.post('http://localhost:3000/api/auth/register', {
       email,
       password
-    });
+    })
+
     if (newUser.data == 'Email is already taken.') {
       setError(newUser.data);
     }
-    // once successful redirect user to feed page
-  };
+    console.log('%%%%%%%%%%%', newUser)
+    // once successful redirect user to login page
+    // window.location.href = "http://localhost:3001/login";
+
+  }
+
   return (
     <div className="signUp">
       <div className="signUpLeft">
