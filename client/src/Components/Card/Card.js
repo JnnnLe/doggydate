@@ -5,7 +5,7 @@ import Avatar from '@material-ui/core/Avatar';
 const Card = (props) => {
 
   return (
-    <div>
+    <div className="card">
       <Avatar className="avatar" alt="Dog" src={props.imgURL} />
       <div className="info">
         <h2>{props.petName} - {props.age} YO</h2> 

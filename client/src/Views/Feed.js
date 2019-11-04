@@ -6,15 +6,14 @@ import Card from '../Components/Card/Card'
 const Feed = () => {
   const [ allPets, setAllPets ] = useState([]) 
 
-  useEffect(() => {
-    const getAllPets = async () => {
-      let pets = await axios.get('http://localhost:3000/api/user/pet')
+  const getAllPets = async () => {
+    let pets = await axios.get('http://localhost:3000/api/user/pet')
+    
+    return pets.data == 'You have no pets.' ? pets.data :
+    setAllPets(pets.data)
+  }  
 
-      if (pets.data == 'You have no pets.') {
-        return pets.data
-      }
-      setAllPets(pets.data)
-    }   
+  useEffect(() => {
     getAllPets()
   })
 

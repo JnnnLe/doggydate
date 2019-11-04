@@ -1,8 +1,15 @@
+.card {
+  display: grid;
+  grid-template-columns: 1fr 3fr;
+}
+
 .avatar {
   width: 200px !important;
   height: 200px !important;
+  align-self: center;
 }
 
 .info {
-  align-self: right;
+  align-self: center;
+  text-align: center;
 }
