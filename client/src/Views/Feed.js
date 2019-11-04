@@ -15,7 +15,7 @@ const Feed = () => {
 
   useEffect(() => {
     getAllPets()
-  })
+  }, [setAllPets])
 
   const renderPets = () => {
     return allPets.map(dog => <Card {...dog} /> )
