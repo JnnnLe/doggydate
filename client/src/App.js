@@ -13,16 +13,15 @@ const App = () => {
 
   return (
     <Router>
-        <div>
-          <Switch>
-              <Route exact path='/login' component={Login} />
-              <Route path='/register' component={SignUp} />
-              <Route path='/addpet' component={AddPet} />
-              <Route path='/feed' component={Feed} />
-
-          </Switch>
-        </div>
-      </Router>
+      <div>
+        <Switch>
+          <Route exact path='/login' component={Login} />
+          <Route path='/register' component={SignUp} />
+          <Route path='/addpet' component={AddPet} />
+          <Route path='/feed' component={Feed} />
+        </Switch>
+      </div>
+    </Router>
   )
 }
 
