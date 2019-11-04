@@ -4,6 +4,5 @@
 }
 
 .info {
-  display: flex;
-  float: right;
+  align-self: right;
 }
