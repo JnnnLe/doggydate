@@ -13,6 +13,7 @@ const Login = () => {
   const handleSubmit = async event => {
     event.preventDefault()
     // send this info to endpoint, add http to prevent cross origin errors '/api/user'
+    // diff for dev and prod mode
     let newUser = await axios.post('http://localhost:3000/api/auth/login', {
       email,
       password
