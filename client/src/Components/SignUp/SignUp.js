@@ -1,33 +1,34 @@
-import React, { useState, useEffect } from 'react';
-import axios from 'axios';
-import { BrowserRouter as Router, Link } from 'react-router-dom';
-import './SignUp.css';
-import TextField from '@material-ui/core/TextField';
-import Button from '@material-ui/core/Button';
+import React, { useState, useEffect } from 'react'
+import axios from 'axios'
+import { BrowserRouter as Router, Link } from 'react-router-dom'
+import './SignUp.css'
+import TextField from '@material-ui/core/TextField'
+import Button from '@material-ui/core/Button'
 
 const Signup = () => {
-  const [ email, setEmail ] = useState('');
-  const [ password, setPassword ] = useState('');
-  const [ err, setError ] = useState('');
+  const [ email, setEmail ] = useState('')
+  const [ password, setPassword ] = useState('')
+  const [ err, setError ] = useState('')
 
   const handleSubmit = async event => {
-    console.log('_------ inside')
-    event.preventDefault();
-    // send this info to endpoint, add http to prevent cross origin errors '/api/user'
+    event.preventDefault()
     let newUser = await axios.post('http://localhost:3000/api/auth/register', {
       email,
       password
     })
 
+    // console.log('New user added:', newUser)
+    
     if (newUser.data == 'Email is already taken.') {
-      setError(newUser.data);
+      setError('Email is already taken.')
+      return new Error(400)
     }
-    console.log('%%%%%%%%%%%', newUser)
+
     // once successful redirect user to login page
-    // window.location.href = "http://localhost:3001/login";
+    return window.location.href = "http://localhost:3001/login"
 
   }
-
+ 
   return (
     <div className="signUp">
       <div className="signUpLeft">
@@ -59,6 +60,7 @@ const Signup = () => {
       </div>
       <div className="signUpRight" />
     </div>
-  );
+  )
 }
-export default Signup;
+
+export default Signup

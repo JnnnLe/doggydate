@@ -2,7 +2,9 @@ import mongoose from 'mongoose'
 
 const petSchema = new mongoose.Schema({
   owner: {
-    id: String,
+    // reference the single, Owner, on the pet schemas
+    type: mongoose.SchemaTypes.ObjectId,
+    ref: 'user',
     // required: true
   },
   petName: {

@@ -6,6 +6,9 @@ const router = Router()
 
 const addPet = async (req, res) => {
   // To do: set up conditional for when the user is not found, to be updated when authentication is implemented
+  
+  // eg: let email = 'nic@nic.com'
+  // let user = query db for this email, get their _id
   const newPet = await Pet.create({
     // To do: dynamic _id of user - Authenication needed for owner property
     owner: '5dbf1ce370ed9f5abafff4eb',

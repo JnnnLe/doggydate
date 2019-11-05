@@ -23,13 +23,13 @@ mongoose.connect(uri, { useNewUrlParser: true, useUnifiedTopology: true, useCrea
 
 // initiate the start of the router
 app.use('/api/auth', authRouter) 
-// app.use('/api/user', petRouter) 
+app.use('/api/user', petRouter) 
 
 app.post('/api/auth', authRouter) // add a new user
 app.get('/api/auth', authRouter) // get all users
 
-// app.post('/api/user', petRouter) // Add a new pet
-// app.get('/api/user', petRouter) // Get all pets in db
+app.post('/api/user', petRouter) // Add a new pet
+app.get('/api/user', petRouter) // Get all pets in db
 
 
 export const start = () => {

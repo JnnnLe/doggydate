@@ -1,11 +1,11 @@
 import React, { useState } from 'react'
 import axios from 'axios'
-import TextField from '@material-ui/core/TextField';
-import Button from '@material-ui/core/Button';
-import Radio from '@material-ui/core/Radio';
-import { FormLabel } from '@material-ui/core';
-import RadioGroup from '@material-ui/core/RadioGroup';
-import FormControlLabel from '@material-ui/core/FormControlLabel';
+import TextField from '@material-ui/core/TextField'
+import Button from '@material-ui/core/Button'
+import Radio from '@material-ui/core/Radio'
+import { FormLabel } from '@material-ui/core'
+import RadioGroup from '@material-ui/core/RadioGroup'
+import FormControlLabel from '@material-ui/core/FormControlLabel'
 
 const AddPet = () => {
   const [ petName, setPetName ] = useState('')
@@ -18,7 +18,7 @@ const AddPet = () => {
   const [ energyLevel, setEnergyLevel ] = useState('')
   const [ heatSensitivity, setHeatSensitivity ] = useState('')
   const [ waterCompatibility, setWaterCompatibility ] = useState('')
-  const [ selectedValue, setSelectedValue ] = React.useState('a');
+  const [ selectedValue, setSelectedValue ] = React.useState('a')
 
   const handleSubmit = async event => {
     let newPet = axios.post('http://localhost:3000/api/user/pet', {
@@ -33,10 +33,8 @@ const AddPet = () => {
       heatSensitivity,
       waterCompatibility
     })
-    .then(res => {
-      window.location.href = "http://localhost:3001/feed";
-
-    })
+    // Todo: make sure no fields are submitted blank - should notify user
+    return window.location.href = "http://localhost:3001/feed"
   }
 
   return (
