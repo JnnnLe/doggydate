@@ -4,7 +4,7 @@ import express from 'express'
 import { json, urlencoded } from 'body-parser'
 import morgan from 'morgan'
 import cors from 'cors'
-let port = 3000
+let port = 3001
 import authRouter from './resources/user/user.router'
 import petRouter from './resources/pet/pet.router'
 
@@ -34,6 +34,6 @@ app.get('/api/user', petRouter) // Get all pets in db
 
 export const start = () => {
   app.listen(port, () => {
-    console.log('doggydate server on port 3000')
+    console.log('doggydate Express server on port 3001')
   })
 }

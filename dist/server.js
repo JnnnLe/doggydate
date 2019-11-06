@@ -23,7 +23,7 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 
 require('dotenv').config();
 
-let port = 3000;
+let port = 3001;
 const app = (0, _express.default)();
 exports.app = app;
 app.disable('x-powered-by');
@@ -54,7 +54,7 @@ app.get('/api/user', _pet.default); // Get all pets in db
 
 const start = () => {
   app.listen(port, () => {
-    console.log('doggydate server on port 3000');
+    console.log('doggydate Express server on port 3001');
   });
 };
 
