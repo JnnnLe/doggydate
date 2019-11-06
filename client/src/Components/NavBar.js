@@ -31,3 +31,4 @@ const NavBar = () => {
 };
 
 export default NavBar;
+// transferred/applied most of this logic to Login

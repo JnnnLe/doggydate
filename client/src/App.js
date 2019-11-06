@@ -4,7 +4,7 @@ import SignUp from './Components/SignUp/SignUp'
 import Login from './Components/Login/Login'
 import Feed from './Views/Feed'
 import AddPet from './Components/AddPet/AddPet'
-import NavBar from './Components/NavBar'
+// import NavBar from './Components/NavBar'
 import { useAuth0 } from './react-auth0-spa'
 import Profile from './Components/Profile'
 import PrivateRoute from './Components/PrivateRoute'
@@ -18,18 +18,14 @@ const App = () => {
     <div className="App">
 
     <Router>
-      <header>
-        <NavBar />
-      </header>
+
       <div>
         <Switch>
-          <Route exact path='/' component={Login} />
-          <Route path='/register' component={SignUp} />
-          <Route path='/addpet' component={AddPet} />
-          <Route path='/feed' component={Feed} />
-
-          <Route path="/" exact />
+          <Route exact path="/" component={Login}/>
           <PrivateRoute path="/profile" component={Profile} />
+
+          <Route path='/addPet' component={AddPet} />
+          <Route path='/feed' component={Feed} />
         </Switch>
       </div>
     </Router>

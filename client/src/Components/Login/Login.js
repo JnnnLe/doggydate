@@ -4,11 +4,13 @@ import { BrowserRouter as Router, Link } from 'react-router-dom'
 import './Login.css'
 import TextField from '@material-ui/core/TextField'
 import Button from '@material-ui/core/Button'
+import { useAuth0 } from "../../react-auth0-spa";
 
 const Login = () => {
+  const { isAuthenticated, loginWithRedirect, logout } = useAuth0();
   const [ email, setEmail ] = useState('')
   const [ password, setPassword ] = useState('')
-  const [ err, setError ] = useState('')
+  // const [ err, setError ] = useState('')
 
   const handleSubmit = async event => {
     event.preventDefault()
@@ -32,41 +34,28 @@ const Login = () => {
     <div className="login">
       <div className="loginLeft" />
       <div className="loginRight">
-        <h1 className="loginHeader">Login</h1>
-        <TextField
-          id="standard-basic"
-          label="Email"
-          margin="normal"
-          onChange={event => setEmail(event.target.value)}
-        />
+        <h1 className="loginHeader">Welcome to doggydate</h1>
         <br />
-        <TextField
-          id="standard-basic"
-          label="Password"
-          type="password"
-          margin="normal"
-          onChange={event => setPassword(event.target.value)}
-        />
-        <br />
-        <br />
-        <Button
+        {!isAuthenticated && (
+          <Button
           variant="contained"
           className="loginButton"
-          onClick={handleSubmit}>
-          Login
-        </Button>
-        <br />
-        <br />
-        <Button
-          variant="contained"
-          className="loginButton"
-          // onClick={handleSubmit}
-          href='/register'
+          onClick={() =>
+            loginWithRedirect({})
+            }
           >
-          Don't have an account?
-        </Button>
-        
-        {err ? <div>{err}</div> : null}
+            Let's begin
+          </Button>
+        )}
+          
+        {isAuthenticated && <button onClick={() => logout()}>Log out</button>}
+
+        {isAuthenticated && (
+          <Router>
+            <Link path="/feed">Feed</Link>
+            <Link path="/profile">Profile</Link>
+          </Router>
+        )}
       </div>
     </div>
   )
