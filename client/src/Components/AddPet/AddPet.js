@@ -18,10 +18,9 @@ const AddPet = () => {
   const [ energyLevel, setEnergyLevel ] = useState('')
   const [ heatSensitivity, setHeatSensitivity ] = useState('')
   const [ waterCompatibility, setWaterCompatibility ] = useState('')
-  const [ selectedValue, setSelectedValue ] = React.useState('a')
 
   const handleSubmit = async event => {
-    let newPet = axios.post('http://localhost:3000/api/user/pet', {
+    let newPet = axios.post('http://localhost:3001/api/user/pet', {
       petName,
       imgURL,
       breed,
@@ -34,7 +33,7 @@ const AddPet = () => {
       waterCompatibility
     })
     // Todo: make sure no fields are submitted blank - should notify user
-    return window.location.href = "http://localhost:3001/feed"
+    return window.location.href = "http://localhost:3000/feed"
   }
 
   return (

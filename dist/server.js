@@ -15,6 +15,10 @@ var _morgan = _interopRequireDefault(require("morgan"));
 
 var _cors = _interopRequireDefault(require("cors"));
 
+var _expressJwt = _interopRequireDefault(require("express-jwt"));
+
+var _jwksRsa = _interopRequireDefault(require("jwks-rsa"));
+
 var _user = _interopRequireDefault(require("./resources/user/user.router"));
 
 var _pet = _interopRequireDefault(require("./resources/pet/pet.router"));
@@ -24,8 +28,34 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 require('dotenv').config();
 
 let port = 3001;
-const app = (0, _express.default)();
+const app = (0, _express.default)(); // Set up Auth0 configuration
+
 exports.app = app;
+const authConfig = {
+  domain: process.env.DOMAIN,
+  audience: process.env.API_IDENTIFIER
+}; // console.log('HERE:',authConfig.domain)
+// Define middleware that validates incoming bearer tokens
+// using JWKS from YOUR_DOMAIN
+
+const checkJwt = (0, _expressJwt.default)({
+  secret: _jwksRsa.default.expressJwtSecret({
+    cache: true,
+    rateLimit: true,
+    jwksRequestsPerMinute: 5,
+    jwksUri: `https://${authConfig.domain}/.well-known/jwks.json`
+  }),
+  audience: authConfig.audience,
+  issuer: `https://${authConfig.domain}/`,
+  algorithm: ["RS256"]
+}); // Define an endpoint that must be called with an access token
+
+app.get("/api/external", checkJwt, (req, res) => {
+  console.log('$$$$$$$$$$$$', req);
+  res.send({
+    msg: "Your Access Token was successfully validated!"
+  });
+});
 app.disable('x-powered-by');
 app.use((0, _cors.default)());
 app.use((0, _bodyParser.json)());

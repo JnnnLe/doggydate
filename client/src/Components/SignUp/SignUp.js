@@ -12,7 +12,7 @@ const Signup = () => {
 
   const handleSubmit = async event => {
     event.preventDefault()
-    let newUser = await axios.post('http://localhost:3000/api/auth/register', {
+    let newUser = await axios.post('http://localhost:3001/api/auth/register', {
       email,
       password
     })
@@ -25,7 +25,7 @@ const Signup = () => {
     }
 
     // once successful redirect user to login page
-    return window.location.href = "http://localhost:3001/login"
+    return window.location.href = "http://localhost:3000/login"
 
   }
  

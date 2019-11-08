@@ -4,11 +4,46 @@ import express from 'express'
 import { json, urlencoded } from 'body-parser'
 import morgan from 'morgan'
 import cors from 'cors'
+import jwt from 'express-jwt'
+import jwksRsa from 'jwks-rsa'
+
 let port = 3001
 import authRouter from './resources/user/user.router'
 import petRouter from './resources/pet/pet.router'
 
 export const app = express()
+
+// Set up Auth0 configuration
+const authConfig = {
+  domain: process.env.DOMAIN,
+  audience: process.env.API_IDENTIFIER
+}
+
+// console.log('HERE:',authConfig.domain)
+
+// Define middleware that validates incoming bearer tokens
+// using JWKS from YOUR_DOMAIN
+const checkJwt = jwt({
+  secret: jwksRsa.expressJwtSecret({
+    cache: true,
+    rateLimit: true,
+    jwksRequestsPerMinute: 5,
+    jwksUri: `https://${authConfig.domain}/.well-known/jwks.json`
+  }),
+
+  audience: authConfig.audience,
+  issuer: `https://${authConfig.domain}/`,
+  algorithm: ["RS256"]
+});
+
+
+// Define an endpoint that must be called with an access token
+app.get("/api/external", checkJwt, (req, res) => {
+  console.log('$$$$$$$$$$$$', req)
+  res.send({
+    msg: "Your Access Token was successfully validated!"
+  });
+});
 
 app.disable('x-powered-by')
 
