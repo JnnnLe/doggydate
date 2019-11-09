@@ -10,7 +10,6 @@ const ExternalApi = () => {
     try {
       const token = await getTokenSilently();
 
-      // console.log('***** NOT JWT token', token)
       const response = await fetch("/api/external", {
         headers: {
           Authorization: `Bearer ${token}`
