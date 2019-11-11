@@ -18,19 +18,19 @@ const App = () => {
   return (
     <div className="App">
 
-    <Router>
-      <NavBar />
-      <div>
-        <Switch>
-          <Route exact path="/" component={Login}/>
-          <PrivateRoute path="/profile" component={Profile} />
-          <PrivateRoute path="/external-api" component={ExternalApi} />
+      <Router>
+        <NavBar />
+        <div>
+          <Switch>
+            <Route exact path="/" component={Login}/>
+            <PrivateRoute path="/profile" component={Profile} />
+            <PrivateRoute path="/external-api" component={ExternalApi} />
 
-          <Route path='/addPet' component={AddPet} />
-          <Route path='/feed' component={Feed} />
-        </Switch>
-      </div>
-    </Router>
+            <Route path='/addPet' component={AddPet} />
+            <Route path='/feed' component={Feed} />
+          </Switch>
+        </div>
+      </Router>
 
     </div>
   )

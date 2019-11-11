@@ -1,23 +1,26 @@
-import React, { useState, useEffect, useContext } from "react";
+import React from "react";
+
 import createAuth0Client from "@auth0/auth0-spa-js";
 
 const DEFAULT_REDIRECT_CALLBACK = () =>
   window.history.replaceState({}, document.title, window.location.pathname);
 
 export const Auth0Context = React.createContext();
-export const useAuth0 = () => useContext(Auth0Context);
+
+export const useAuth0 = () => React.useContext(Auth0Context);
+
 export const Auth0Provider = ({
   children,
   onRedirectCallback = DEFAULT_REDIRECT_CALLBACK,
   ...initOptions
 }) => {
-  const [isAuthenticated, setIsAuthenticated] = useState();
-  const [user, setUser] = useState();
-  const [auth0Client, setAuth0] = useState();
-  const [loading, setLoading] = useState(true);
-  const [popupOpen, setPopupOpen] = useState(false);
+  const [isAuthenticated, setIsAuthenticated] = React.useState();
+  const [user, setUser] = React.useState();
+  const [auth0Client, setAuth0] = React.useState();
+  const [loading, setLoading] = React.useState(true);
+  const [popupOpen, setPopupOpen] = React.useState(false);
 
-  useEffect(() => {
+  React.useEffect(() => {
     const initAuth0 = async () => {
       const auth0FromHook = await createAuth0Client(initOptions);
       setAuth0(auth0FromHook);
@@ -39,6 +42,7 @@ export const Auth0Provider = ({
       setLoading(false);
     };
     initAuth0();
+    // eslint-disable-next-line
   }, []);
 
   const loginWithPopup = async (params = {}) => {

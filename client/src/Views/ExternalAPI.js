@@ -1,15 +1,20 @@
-import React, { useState } from "react";
+import React from "react";
+
 import { useAuth0 } from "../react-auth0-spa";
 
 const ExternalApi = () => {
-  const [showResult, setShowResult] = useState(false);
-  const [apiMessage, setApiMessage] = useState("");
-  const { getTokenSilently } = useAuth0();
+  const [showResult, setShowResult] = React.useState(false);
+  const [apiMessage, setApiMessage] = React.useState("");
+  const { getTokenSilently, getIdTokenClaims } = useAuth0();
 
   const callApi = async () => {
     try {
       const token = await getTokenSilently();
+      // gives full data on user
+      const access_token = await getIdTokenClaims();
+      console.log(access_token, token)
 
+      // response is not valid or returns nothing
       const response = await fetch("/api/external", {
         headers: {
           Authorization: `Bearer ${token}`
