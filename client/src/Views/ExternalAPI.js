@@ -10,9 +10,6 @@ const ExternalApi = () => {
   const callApi = async () => {
     try {
       const token = await getTokenSilently();
-      // gives full data on user
-      const access_token = await getIdTokenClaims();
-      console.log(access_token, token)
 
       // response is not valid or returns nothing
       const response = await fetch("/api/external", {
@@ -20,6 +17,8 @@ const ExternalApi = () => {
           Authorization: `Bearer ${token}`
         }
       });
+
+      console.log(response)
 
       const responseData = await response.json();
 

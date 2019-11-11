@@ -1,19 +1,6 @@
 import mongoose from 'mongoose'
-// import bcrypt from 'bcrypt'
 
 const userSchema = new mongoose.Schema({
-  // userToken: {
-  //   // Todo: figure out how to generate token
-  //   type: String,
-  //   required: true,
-  //   unique: true,
-  //   trim: true
-  // },
-  // username: {
-  //   type: String,
-  //   unique: true,
-  //   trim: true
-  // },
   name: {
     type: String,
     required: true,
@@ -41,36 +28,5 @@ const userSchema = new mongoose.Schema({
     // required: true
   }
 })
-
-// userSchema.pre('save', function(next) {
-//   if (!this.isModified('password')) {
-//     return next()
-//   }
-
-//   bcrypt.hash(this.password, 8, (err, hash) => {
-//     if (err) {
-//       return next(err)
-//     }
-
-//     this.password = hash
-//     next()
-//   })
-// })
-
-// userSchema.methods.checkPassword = function(password) {
-//   const passwordHash = this.password
-//   return new Promise((resolve, reject) => {
-//     bcrypt.compare(password, passwordHash, (err, same) => {
-//       if (err) {
-//         return reject(err)
-//       }
-
-//       resolve(same)
-//     })
-//   })
-// }
-
-// compound index, sures that the combination of required fields are unique
-// userSchema.index({ username: 1, email: 1 }, { unique: true })
 
 export const User = mongoose.model('user', userSchema)

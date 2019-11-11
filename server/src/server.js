@@ -13,6 +13,14 @@ import petRouter from './resources/pet/pet.router'
 
 export const app = express()
 
+app.disable('x-powered-by')
+
+app.use(cors())
+app.use(json())
+app.use(urlencoded({ extended: true }))
+app.use(morgan('dev'))
+
+
 // Set up Auth0 configuration
 const authConfig = {
   domain: process.env.DOMAIN,
@@ -34,8 +42,6 @@ const checkJwt = jwt({
   algorithm: ["RS256"]
 });
 
-console.log('JWT:', checkJwt)
-
 // Define an endpoint that must be called with an access token
 app.get("/api/external", checkJwt, (req, res) => {
   console.log('$$$$$$$$$$$$', req)
@@ -44,12 +50,7 @@ app.get("/api/external", checkJwt, (req, res) => {
   });
 });
 
-app.disable('x-powered-by')
 
-app.use(cors())
-app.use(json())
-app.use(urlencoded({ extended: true }))
-app.use(morgan('dev'))
 
 
 const uri = `mongodb+srv://${process.env.DB_USER}:${process.env.DB_PASSWORD}@doggydate-biwhc.gcp.mongodb.net/api?retryWrites=true&w=majority`
