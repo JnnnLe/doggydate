@@ -19,8 +19,6 @@ const authConfig = {
   audience: process.env.API_IDENTIFIER
 }
 
-// console.log('HERE:',authConfig.domain)
-
 // Define middleware that validates incoming bearer tokens
 // using JWKS from YOUR_DOMAIN
 const checkJwt = jwt({
