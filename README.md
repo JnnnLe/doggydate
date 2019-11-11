@@ -10,7 +10,7 @@ Back-end:
   ``` yarn install ```
 
   Start server and establish connection to MongoDB, ignore depreciation warning in console.
-  ``` yarn dev ``` 
+  ``` cd server then yarn dev ``` 
 
 Front-end:
   ```cd client```
