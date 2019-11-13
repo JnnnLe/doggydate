@@ -10,10 +10,10 @@ const Feed = () => {
 
   const getAllPets = async () => {
     // get all pets from PetFinder API
-    let allPets = axios.get('/feed')
+    let allPets = await axios.get('http://localhost:3001/feed')
     .then((response) => {
       // place access token in header for every request made to the api
-      console.log('**********************Inside of the Feed making an axios call to api', response);
+      console.log('**********************Inside of the Feed making an axios call to my express server', response.data.animals)
     })
   }  
 

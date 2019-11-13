@@ -4,7 +4,12 @@
   "main": "index.js",
   "author": "Jennifer Lê Jowett",
   "license": "MIT",
-  "proxy": "http://localhost:3001",
+  "proxy": {
+    "/api": {
+      "target": "http://localhost:3001",
+      "secure": false      
+    }
+  },
   "scripts": {
     "build": "babel src --out-dir dist",
     "test-auth": "yarn test -t Authentication:",

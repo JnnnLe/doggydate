@@ -78,12 +78,17 @@ const url = `https://api.petfinder.com/v2/oauth2/${token}`
 
 // To do: Token expires every hour check to see when the last token was accessed
 
+let bearerToken = ''
+let header = `Authorization: Bearer ${bearerToken}` 
+
 // Call PetFnder API to get bearer token that will be used in the header to make calls
 // To do: make post request more eloquent
-app.get('/feed', async (req, res) => {
+const getBearerToken = app.get('/feed', async (req, res) => {
+
+  let animals = ''
 
   // Make request for OAuth token
-  fetch('https://api.petfinder.com/v2/oauth2/token', {
+  await fetch('https://api.petfinder.com/v2/oauth2/token', {
     method: 'POST',
     body: `grant_type=client_credentials&client_id=${clientId}&client_secret=${clientSecret}`,
     headers: {
@@ -91,12 +96,48 @@ app.get('/feed', async (req, res) => {
     }
   })
   .then(resp => resp.json())
-  .then(data => res.status(200).send(data))
-});
+  .then(data => {
+    bearerToken = data.access_token
+    })
+  
+    await fetch('https://api.petfinder.com/v2/animals?type=dog', {
+      // method: 'GET',
+      headers : {
+        'Authorization': `Bearer ${bearerToken}`,
+        'Content-Type': 'application/x-www-form-urlencoded'
+      }
+      })
+      .then(function (res) {
 
+        // Return the API onse as JSON
+        return res.json();
+      
+      })
+      .then(function (animals) {
+      
+       // Log the pet data
+      //  console.log('pets', data)
+      //  animals = data
+      res.send(animals)
+  })
+  
+  .catch(err => console.log('Something went wrong in GetBearerToken:', err))
+})
 
 export const start = () => {
   app.listen(expressPort, () => {
     console.log('doggydate Express server on port 3001')
   })
 }
+
+// // make get request to PF api and send all of the pet data to the frontend
+// const getPets = fetch('https://api.petfinder.com/v2/animals?type=dog', {
+//   // method: 'GET',
+//   headers : {
+//     'Authorization': `Bearer ${bearerToken}`,
+//     'Content-Type': 'application/x-www-form-urlencoded'
+//   }
+//   })
+//   .then(res => res.json())
+//   .then(data => console.log(data))
+//   .catch(err => console.log('Something went wrong in GetPets:', err))
