@@ -1,32 +1,15 @@
 import React, { useState } from 'react'
 import axios from 'axios'
-import { BrowserRouter as Router, Link } from 'react-router-dom'
+import { BrowserRouter as Router, Link, Redirect } from 'react-router-dom'
 import './Login.css'
 import Button from '@material-ui/core/Button'
 import { useAuth0 } from "../../react-auth0-spa";
+import Feed from '../../Views/Feed'
 
 const Login = () => {
   const { isAuthenticated, loginWithRedirect, logout } = useAuth0();
   const [ email, setEmail ] = useState('')
   const [ password, setPassword ] = useState('')
-
-  const handleSubmit = async event => {
-    event.preventDefault()
-    // send this info to endpoint, add http to prevent cross origin errors '/api/user'
-    // diff for dev and prod mode
-    let newUser = await axios.post('http://localhost:3001/api/auth/login', {
-      email,
-      password
-    })
-
-    // console.log(newUser)
-    
-    if (newUser.data === 'Invalid credentials!') {
-      return new Error(400)
-    }
-    // once successful redirect user to feed page
-    return window.location.href = "http://localhost:3000/feed"
-  }
   
   return (
     <div className="login">
@@ -45,15 +28,7 @@ const Login = () => {
             Let's begin
           </Button>
         )}
-          
-        {isAuthenticated && <button onClick={() => logout()}>Log out</button>}
 
-        {isAuthenticated && (
-          <Router>
-            <Link path="/feed">Feed</Link>
-            <Link path="/profile">Profile</Link>
-          </Router>
-        )}
       </div>
     </div>
   )

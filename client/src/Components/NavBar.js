@@ -1,11 +1,11 @@
-import React from "react";
+import React from 'react'
 
-import { Link } from "react-router-dom";
+import { Link } from 'react-router-dom'
 
-import { useAuth0 } from "../react-auth0-spa";
+import { useAuth0 } from '../react-auth0-spa'
 
 const NavBar = () => {
-  const { isAuthenticated, loginWithRedirect, logout } = useAuth0();
+  const { isAuthenticated, loginWithRedirect, logout } = useAuth0()
 
   return (
     <div>
@@ -17,14 +17,12 @@ const NavBar = () => {
 
       {isAuthenticated && (
         <span>
-          <Link to="/">Home</Link>&nbsp;
-          <Link to="/profile">Profile</Link>
-          <Link to="/external-api">External API</Link>
+        <Link to='/'>Home</Link>&nbsp;
+        <Link to='/feed'>Feed</Link>&nbsp;
         </span>
       )}
     </div>
-  );
-};
+  )
+}
 
-export default NavBar;
-// transferred/applied most of this logic to Login
+export default NavBar

@@ -65,7 +65,7 @@ app.post('/api/user', async (req, res) => {
     return res.status(200).send({ msg: `Successfully added new user: ${newUser}`})
 
   } else {
-    return res.status(409).send({ msg: 'Duplicate user but authenicated' })
+    return res.status(202).send({ msg: 'Existing user && authenicated.' })
   }
 })
 

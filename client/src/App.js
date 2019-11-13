@@ -7,7 +7,8 @@ import NavBar from './Components/NavBar'
 import { useAuth0 } from './react-auth0-spa'
 import Profile from './Components/Profile'
 import PrivateRoute from './Components/PrivateRoute'
-import ExternalApi from './Views/ExternalAPI';
+import ExternalApi from './Views/ExternalAPI'
+import { Redirect } from 'react-router-dom'
 
 // Todo: React router to link to Feed.js or any other views
 import { BrowserRouter as Router, Route, Link, Switch } from 'react-router-dom'
@@ -22,10 +23,6 @@ const App = () => {
         <div>
           <Switch>
             <Route exact path='/' component={Login}/>
-            <PrivateRoute path='/profile' component={Profile} />
-            <PrivateRoute path='/external-api' component={ExternalApi} />
-
-            <PrivateRoute path='/addPet' component={AddPet} />
             <PrivateRoute path='/feed' component={Feed} />
           </Switch>
         </div>

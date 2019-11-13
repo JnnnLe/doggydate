@@ -8,10 +8,7 @@ const Feed = () => {
   const [ allPets, setAllPets ] = useState([]) 
 
   const getAllPets = async () => {
-    let pets = await axios.get('http://localhost:3001/api/user/pet')
-    
-    return pets.data === 'You have no pets.' ? pets.data :
-    setAllPets(pets.data)
+    // get all pets from PetFinder API
   }  
 
   useEffect(() => {
