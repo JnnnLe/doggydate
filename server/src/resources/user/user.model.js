@@ -1,31 +1,21 @@
 import mongoose from 'mongoose'
 
 const userSchema = new mongoose.Schema({
-  name: {
+  email: {
     type: String,
     required: true,
     unique: true,
     trim: true
   },
-  sub: {
+  name: {
     required: true,
     type: String
   },
   location: {
     type: String
   },
-  bookedDates: {
+  likedAnimals: {
     type: Object
-  },
-  GoogleCalendarAvailability: {
-    type: Object
-    // Todo: Store calendar
-    // Mixed data types, Google might send it back in json
-  },
-  pets: {
-    type: mongoose.SchemaTypes.ObjectId,
-    ref: 'pet'
-    // required: true
   }
 })
 
