@@ -6,6 +6,8 @@ import morgan from 'morgan'
 import cors from 'cors'
 import jwt from 'express-jwt'
 import jwksRsa from 'jwks-rsa'
+import axios from 'axios'
+import fetch from 'node-fetch'
 
 let port = 3001
 
@@ -13,6 +15,7 @@ const uri = `mongodb+srv://${process.env.DB_USER}:${process.env.DB_PASSWORD}@dog
 mongoose.connect(uri, { useNewUrlParser: true, useUnifiedTopology: true, useCreateIndex: true })
 
 import { User } from './resources/user/user.model'
+import { async } from 'q'
 export const app = express()
 
 app.disable('x-powered-by')
@@ -54,7 +57,6 @@ app.get('/api/external', checkJwt, (req, res) => {
 
 // registar a new user
 app.post('/api/user', async (req, res) => {
-  console.log('Server side')
   let user = await User.findOne({ email: req.body.email })
 
   if (user == null) {
@@ -68,6 +70,26 @@ app.post('/api/user', async (req, res) => {
     return res.status(202).send({ msg: 'Existing user && authenicated.' })
   }
 })
+
+const clientId = process.env.PFCLIENTID
+const clientSecret = process.env.PFSECRET
+const token = `grant_type=client_credentials&client_id=${clientId}&client_secret=${clientSecret}`
+const url = `https://api.petfinder.com/v2/oauth2/${token}`
+
+// To do: make post request more eloquent
+app.get('/feed', async (req, res) => {
+  // Make request for OAuth token
+  fetch('https://api.petfinder.com/v2/oauth2/token', {
+	method: 'POST',
+	body: 'grant_type=client_credentials&client_id=' + clientId + '&client_secret=' + clientSecret,
+	headers: {
+		'Content-Type': 'application/x-www-form-urlencoded'
+	}
+})
+.then(resp => resp.json())
+.then(data => res.status(200).send(data))
+});
+
 
 export const start = () => {
   app.listen(port, () => {

@@ -1,14 +1,11 @@
 import React from 'react'
+import { Redirect } from 'react-router-dom'
+import { useAuth0 } from './react-auth0-spa'
 import './App.css'
 import Login from './Components/Login/Login'
 import Feed from './Views/Feed'
-import AddPet from './Components/AddPet/AddPet'
 import NavBar from './Components/NavBar'
-import { useAuth0 } from './react-auth0-spa'
-import Profile from './Components/Profile'
 import PrivateRoute from './Components/PrivateRoute'
-import ExternalApi from './Views/ExternalAPI'
-import { Redirect } from 'react-router-dom'
 
 // Todo: React router to link to Feed.js or any other views
 import { BrowserRouter as Router, Route, Link, Switch } from 'react-router-dom'
