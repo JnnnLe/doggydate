@@ -9,7 +9,7 @@ import jwksRsa from 'jwks-rsa'
 import axios from 'axios'
 import fetch from 'node-fetch'
 
-let port = 3001
+let expressPort = 3001
 
 const uri = `mongodb+srv://${process.env.DB_USER}:${process.env.DB_PASSWORD}@doggydate-biwhc.gcp.mongodb.net/api?retryWrites=true&w=majority`
 mongoose.connect(uri, { useNewUrlParser: true, useUnifiedTopology: true, useCreateIndex: true })
@@ -55,7 +55,7 @@ app.get('/api/external', checkJwt, (req, res) => {
   });
 });
 
-// registar a new user
+// register a new user
 app.post('/api/user', async (req, res) => {
   let user = await User.findOne({ email: req.body.email })
 
@@ -76,23 +76,27 @@ const clientSecret = process.env.PFSECRET
 const token = `grant_type=client_credentials&client_id=${clientId}&client_secret=${clientSecret}`
 const url = `https://api.petfinder.com/v2/oauth2/${token}`
 
+// To do: Token expires every hour check to see when the last token was accessed
+
+// Call PetFnder API to get bearer token that will be used in the header to make calls
 // To do: make post request more eloquent
 app.get('/feed', async (req, res) => {
+
   // Make request for OAuth token
   fetch('https://api.petfinder.com/v2/oauth2/token', {
-	method: 'POST',
-	body: 'grant_type=client_credentials&client_id=' + clientId + '&client_secret=' + clientSecret,
-	headers: {
-		'Content-Type': 'application/x-www-form-urlencoded'
-	}
-})
-.then(resp => resp.json())
-.then(data => res.status(200).send(data))
+    method: 'POST',
+    body: `grant_type=client_credentials&client_id=${clientId}&client_secret=${clientSecret}`,
+    headers: {
+      'Content-Type': 'application/x-www-form-urlencoded'
+    }
+  })
+  .then(resp => resp.json())
+  .then(data => res.status(200).send(data))
 });
 
 
 export const start = () => {
-  app.listen(port, () => {
+  app.listen(expressPort, () => {
     console.log('doggydate Express server on port 3001')
   })
 }
