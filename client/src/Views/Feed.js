@@ -5,15 +5,13 @@ import './Feed.css'
 
 const Feed = () => {
   const [ allPets, setAllPets ] = useState([]) 
-  // must save the access_token and include in every header
-  const [ accessToken, setAccessToken ] = useState('')
 
   const getAllPets = async () => {
     // get all pets from PetFinder API
     let allPets = await axios.get('http://localhost:3001/feed')
     .then((response) => {
-      // place access token in header for every request made to the api
-      console.log('**********************Inside of the Feed making an axios call to my express server', response.data.animals)
+      console.log('An example of what each pet object looks like:', response.data.animals[0] )
+      setAllPets(response.data.animals)
     })
   }  
 
@@ -22,7 +20,7 @@ const Feed = () => {
   }, [setAllPets])
 
   // const renderPets = () => {
-  //   return allPets.map(dog => <Card {...dog} /> )
+  //   return allPets.map( dog => <Card {...dog} /> )
   // }
 
   return (
@@ -31,7 +29,7 @@ const Feed = () => {
         USER INFO
       </div>
       <div className="pets">
-        HELLO WORLD!
+        Hello
       </div>
     </div>
   )

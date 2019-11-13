@@ -8,7 +8,6 @@ const PrivateRoute = ({ component: Component, path, ...rest }) => {
 
   useEffect(() => {
     if (isAuthenticated) {
-      // console.log("PR line 11, user obj", user)
       registerUser(user, getTokenSilently)
     }
 
@@ -35,15 +34,19 @@ const PrivateRoute = ({ component: Component, path, ...rest }) => {
 const registerUser = async (user, fn) => {
   try {
     const token = await fn();
-    // console.log('PR User line 38', user)
+    console.log('PR User line 38', token, user.email)
 
-  const newUser = await axios.post('http://localhost:3001/api/user', {
-    headers: {
-      Authorization: `Bearer ${token}`
-    },
+  const newUser = await axios.post('/api/user',
+  {
     email: user.email,
     name: user.name
+  },
+  {
+    'headers': {
+      Authorization: `Bearer ${token}`
+    }
   })
+  
   } catch (error) {
     console.error(error)
   }
