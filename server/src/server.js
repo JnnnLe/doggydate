@@ -8,14 +8,17 @@ import jwt from 'express-jwt'
 import jwksRsa from 'jwks-rsa'
 
 let port = 3001
-import authRouter from './resources/user/user.router'
-import petRouter from './resources/pet/pet.router'
 
+const uri = `mongodb+srv://${process.env.DB_USER}:${process.env.DB_PASSWORD}@doggydate-biwhc.gcp.mongodb.net/api?retryWrites=true&w=majority`
+mongoose.connect(uri, { useNewUrlParser: true, useUnifiedTopology: true, useCreateIndex: true })
+
+import { User } from './resources/user/user.model'
 export const app = express()
 
 app.disable('x-powered-by')
-
 app.use(cors())
+// preflight request: CORS request that checks to see if the CORS protocol is understood and a server is aware using specific methods and header
+app.options('*', cors())
 app.use(json())
 app.use(urlencoded({ extended: true }))
 app.use(morgan('dev'))
@@ -39,33 +42,32 @@ const checkJwt = jwt({
 
   audience: authConfig.audience,
   issuer: `https://${authConfig.domain}/`,
-  algorithm: ["RS256"]
+  algorithm: ['RS256']
 });
 
 // Define an endpoint that must be called with an access token
-app.get("/api/external", checkJwt, (req, res) => {
-  console.log('$$$$$$$$$$$$', req)
+app.get('/api/external', checkJwt, (req, res) => {
   res.send({
-    msg: "Your Access Token was successfully validated!"
+    msg: 'Your Access Token was successfully validated!'
   });
 });
 
+// registar a new user
+app.post('/api/user', async (req, res) => {
+  console.log('Server side')
+  let user = await User.findOne({ email: req.body.email })
 
+  if (user == null) {
+    let newUser = await User.create({
+      email: req.body.email,
+      name: req.body.name
+    })
+    return res.status(200).send({ msg: `Successfully added new user: ${newUser}`})
 
-
-const uri = `mongodb+srv://${process.env.DB_USER}:${process.env.DB_PASSWORD}@doggydate-biwhc.gcp.mongodb.net/api?retryWrites=true&w=majority`
-mongoose.connect(uri, { useNewUrlParser: true, useUnifiedTopology: true, useCreateIndex: true })
-
-// initiate the start of the router
-app.use('/api/auth', authRouter) 
-app.use('/api/user', petRouter) 
-
-app.post('/api/auth', authRouter) // add a new user
-app.get('/api/auth', authRouter) // get all users
-
-app.post('/api/user', petRouter) // Add a new pet
-app.get('/api/user', petRouter) // Get all pets in db
-
+  } else {
+    return res.status(409).send({ msg: 'Duplicate user but authenicated' })
+  }
+})
 
 export const start = () => {
   app.listen(port, () => {
