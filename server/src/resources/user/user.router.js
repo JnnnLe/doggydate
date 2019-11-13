@@ -1,6 +1,6 @@
 import { Router } from 'express'
 import { User } from './user.model'
-import mongoose from 'mongoose'
+// import mongoose from 'mongoose'
 
 const router = Router()
 
@@ -10,16 +10,19 @@ const findUserEmail = async (email) => {
 }
 
 const createNewUser = async (req, res) => {
+  console.log('INside of CREATE USER')
   let user = await findUserEmail(req.body.email)
-  if (user == null) {
-    const user = await User.create({
-      email: req.body.email,
-      password: req.body.password,
-    })
-    return res.send('Success').status(200)
-  } else {
-    return res.send('Email is already taken.').status(400)
-  }
+  // if (user == null) {
+  //   const user = await User.create({
+  //     email: req.body.email,
+  //     password: req.body.password,
+  //   })
+  //   return res.send('Success').status(200)
+  // } else {
+  //   return res.send('Email is already taken.').status(400)
+  // }
+
+  console.log('user', user)
 }
 
 const checkUserCredentials = async (req, res) => {
@@ -27,15 +30,6 @@ const checkUserCredentials = async (req, res) => {
   return (email && req.body.password == email.password) ? res.send('Authenticated!').status(200) : res.send('Invalid credentials!').status(400)
 }
 
-const getMany = async (req, res) => {
-  const user = await User.find({})
-  if (user.length) {
-    res.send(user)
-    res.status(200).end()
-  } else {
-    res.send('Sorry, you do not have any users.').status(400).end()
-  }
-}
 
 router 
   .route('/login')
@@ -43,7 +37,6 @@ router
 
   router 
   .route('/register')
-  .get(getMany) // Get all users
   .post(createNewUser) // Create a new user
 
 export default router

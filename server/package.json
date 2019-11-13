@@ -4,9 +4,9 @@
   "main": "index.js",
   "author": "Jennifer Lê Jowett",
   "license": "MIT",
+  "proxy": "http://localhost:3001",
   "scripts": {
     "build": "babel src --out-dir dist",
-    "test": "NODE_ENV=testing jest --forceExit --detectOpenHandles  --silent",
     "test-auth": "yarn test -t Authentication:",
     "dev": "nodemon --exec yarn restart",
     "restart": "rimraf dist && yarn build && yarn start",

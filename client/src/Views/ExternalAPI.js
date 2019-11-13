@@ -1,24 +1,22 @@
-import React from "react";
+import React from 'react';
 
-import { useAuth0 } from "../react-auth0-spa";
+import { useAuth0 } from '../react-auth0-spa';
+import axios from 'axios';
 
 const ExternalApi = () => {
   const [showResult, setShowResult] = React.useState(false);
-  const [apiMessage, setApiMessage] = React.useState("");
-  const { getTokenSilently, getIdTokenClaims } = useAuth0();
+  const [apiMessage, setApiMessage] = React.useState('');
+  const { getTokenSilently, getIdTokenClaims, user } = useAuth0();
 
   const callApi = async () => {
     try {
       const token = await getTokenSilently();
 
-      // response is not valid or returns nothing
-      const response = await fetch("/api/external", {
+      const response = await axios.get('/api/external', {
         headers: {
           Authorization: `Bearer ${token}`
         }
       });
-
-      console.log(response)
 
       const responseData = await response.json();
 

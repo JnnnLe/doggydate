@@ -8,6 +8,8 @@ const Profile = () => {
     return <div>Loading...</div>
   }
 
+  // console.log('UAA BABA SBBAF/', user)
+
   return (
     <Fragment>
       <img src={user.picture} alt="Profile" />
