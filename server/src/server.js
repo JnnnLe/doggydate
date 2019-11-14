@@ -57,7 +57,6 @@ app.get('/api/external', checkJwt, (req, res) => {
 
 // register a new user
 app.post('/api/user', checkJwt, async (req, res) => {
-  console.log('Backend token?', req )
   let user = await User.findOne({ email: req.body.email })
 
   if (user == null) {
@@ -74,15 +73,18 @@ app.post('/api/user', checkJwt, async (req, res) => {
 
 const clientId = process.env.PFCLIENTID
 const clientSecret = process.env.PFSECRET
-const token = `grant_type=client_credentials&client_id=${clientId}&client_secret=${clientSecret}`
-const url = `https://api.petfinder.com/v2/oauth2/${token}`
+
+// **********************************************************************************************
+
 
 // To do: Token expires every hour check to see when the last token was accessed
 
 let bearerToken = ''
+let zipCode = 0
 // Call PetFnder API to get bearer token that will be used in the header to make calls
 // To do: make post request more eloquent
-const getBearerToken = app.get('/feed', async (req, res) => {
+app.post('/feed', async (req, res) => {
+  zipCode = req.body.zipCode
   // Make request for OAuth token
   await fetch('https://api.petfinder.com/v2/oauth2/token', {
     method: 'POST',
@@ -96,49 +98,47 @@ const getBearerToken = app.get('/feed', async (req, res) => {
     bearerToken = data.access_token
   })
 
-  // await fetch('https://api.petfinder.com/v2/animals?type=dog', {
-  //   headers : {
-  //     'Authorization': `Bearer ${bearerToken}`,
-  //     'Content-Type': 'application/x-www-form-urlencoded'
-  //   }
-  //   })
-  //   .then(function (res) {
-  //     return res.json();
-  //   })
-  //   .then(function (animals) {
-  //   res.send(animals)
-  // })
-  
-  .catch(err => console.log('Something went wrong in GetBearerToken:', err))
-})
-
-// make get request to PF api and send all of the pet data to the frontend
-const getPets = app.get('/feed', async (req, res) => {
-  await fetch('https://api.petfinder.com/v2/animals?type=dog', {
-    method: 'GET',
+  await fetch(`https://api.petfinder.com/v2/animals?get?location=${zipCode}`, {
     headers : {
       'Authorization': `Bearer ${bearerToken}`,
       'Content-Type': 'application/x-www-form-urlencoded'
     }
   })
-  .then(function (res) {
-    // Return the API onse as JSON
-    return res.json();
-  
-  })
-  .then(function (animals) {
-  // Log the pet data
-  //  console.log('pets', data)
-  //  animals = data
-  res.send(animals)
-  })
-  .catch(err => console.log('Something went wrong in GetPets:', err))
+  .then(res => res.json())
+  .then(animals => res.send(animals))
+  .catch(err => console.log('Something went wrong in GetBearerToken:', err))
 })
-  
+
+// **********************************************************************************************
+
+// import { Client } from '@petfinder/petfinder-js'
+// const client = new Client({ apiKey: clientId, secret: clientSecret })
+
+// let fun = ''
+// // generates a user token
+// client.authenticate()
+//   .then(resp => {
+//     const token = resp.data.access_token;
+//     const expires = resp.data.expires_in;
+//     client.config.token = token  // doesn't work
+//     // console.log('**********', client)  // inside here client has bearer token 
+//     // console.log(token)
+//   });
+
+//   // console.log('&&&&&&&&&&&&&&', client) // here client does not
+
+// client.animal.search()
+//   .then(function (res) {
+//     res('Server client.animal response', res)
+//   })
+//   .catch(function (err) {
+//     console.log('Error in Server, animal search sdk:', err)
+//   })
+
+// **********************************************************************************************
 
 export const start = () => {
   app.listen(expressPort, () => {
     console.log('doggydate Express server on port 3001')
   })
 }
-
