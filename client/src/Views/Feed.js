@@ -30,7 +30,6 @@ const Feed = () => {
       zipCode: zipCode
     })
     .then((response) => {
-      console.log('An example of what each pet object looks like:', response )
       setLocalPets(response.data.animals)
     })
     .catch(err => console.log('Error in GetLocalPets:', err))
@@ -41,7 +40,7 @@ const Feed = () => {
   }, [setLocalPets])
 
   const renderPets = () => {
-    return localPets.map( dog => <Card {...dog} /> )
+    return localPets.map( dog => <Card key={dog.id} {...dog} /> )
   }
 
   return (

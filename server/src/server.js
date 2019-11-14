@@ -82,7 +82,7 @@ const clientSecret = process.env.PFSECRET
 let bearerToken = ''
 let zipCode = 0
 // Call PetFnder API to get bearer token that will be used in the header to make calls
-// To do: make post request more eloquent
+// To do: make post request as a get request in the query param more eloquent
 app.post('/feed', async (req, res) => {
   zipCode = req.body.zipCode
   // Make request for OAuth token
@@ -114,20 +114,19 @@ app.post('/feed', async (req, res) => {
 // import { Client } from '@petfinder/petfinder-js'
 // const client = new Client({ apiKey: clientId, secret: clientSecret })
 
-// let fun = ''
 // // generates a user token
 // client.authenticate()
 //   .then(resp => {
 //     const token = resp.data.access_token;
 //     const expires = resp.data.expires_in;
-//     client.config.token = token  // doesn't work
+//     client.config.token = token  // assignment doesn't work
 //     // console.log('**********', client)  // inside here client has bearer token 
 //     // console.log(token)
 //   });
 
-//   // console.log('&&&&&&&&&&&&&&', client) // here client does not
+//   // console.log('&&&&&&&&&&&&&&', client) // here client does not have a bearer token
 
-// client.animal.search()
+// client.animal.search() // how do I search by location or breed?
 //   .then(function (res) {
 //     res('Server client.animal response', res)
 //   })

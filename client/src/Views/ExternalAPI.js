@@ -10,7 +10,8 @@ const ExternalApi = () => {
 
   const callApi = async () => {
     try {
-      const token = await getTokenSilently()
+      // const response = authenicatedGet('/api/external')
+      const token = await getTokenSilently() 
 
       const response = await axios.get('/api/external', {
         headers: {
