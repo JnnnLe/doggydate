@@ -31,7 +31,7 @@ const Feed = () => {
     })
     .then((response) => {
       console.log('An example of what each pet object looks like:', response )
-      // setLocalPets(response.data.animals)
+      setLocalPets(response.data.animals)
     })
     .catch(err => console.log('Error in GetLocalPets:', err))
   }  
@@ -40,9 +40,9 @@ const Feed = () => {
     getLocalPets()
   }, [setLocalPets])
 
-  // const renderPets = () => {
-  //   return allPets.map( dog => <Card {...dog} /> )
-  // }
+  const renderPets = () => {
+    return localPets.map( dog => <Card {...dog} /> )
+  }
 
   return (
     <div className="feed">
@@ -50,6 +50,7 @@ const Feed = () => {
         USER INFO
       </div>
       <div className="pets">
+        {renderPets()}
       </div>
     </div>
   )
