@@ -77,62 +77,59 @@ const clientSecret = process.env.PFSECRET
 // **********************************************************************************************
 
 
-// To do: Token expires every hour check to see when the last token was accessed
+// // To do: Token expires every hour check to see when the last token was accessed
 
-let bearerToken = ''
-let zipCode = 0
-// Call PetFnder API to get bearer token that will be used in the header to make calls
-// To do: make post request as a get request in the query param more eloquent
-app.post('/feed', async (req, res) => {
-  zipCode = req.body.zipCode
-  // Make request for OAuth token
-  await fetch('https://api.petfinder.com/v2/oauth2/token', {
-    method: 'POST',
-    body: `grant_type=client_credentials&client_id=${clientId}&client_secret=${clientSecret}`,
-    headers: {
-      'Content-Type': 'application/x-www-form-urlencoded'
-    }
-  })
-  .then(resp => resp.json())
-  .then(data => {
-    bearerToken = data.access_token
-  })
+// let bearerToken = ''
+// let zipCode = 0
+// // Call PetFnder API to get bearer token that will be used in the header to make calls
+// // To do: make post request as a get request in the query param more eloquent
+// app.post('/feed', async (req, res) => {
+//   zipCode = req.body.zipCode
+//   // Make request for OAuth token
+//   await fetch('https://api.petfinder.com/v2/oauth2/token', {
+//     method: 'POST',
+//     body: `grant_type=client_credentials&client_id=${clientId}&client_secret=${clientSecret}`,
+//     headers: {
+//       'Content-Type': 'application/x-www-form-urlencoded'
+//     }
+//   })
+//   .then(resp => resp.json())
+//   .then(data => {
+//     bearerToken = data.access_token
+//   })
 
-  await fetch(`https://api.petfinder.com/v2/animals?get?location=${zipCode}`, {
-    headers : {
-      'Authorization': `Bearer ${bearerToken}`,
-      'Content-Type': 'application/x-www-form-urlencoded'
-    }
-  })
-  .then(res => res.json())
-  .then(animals => res.send(animals))
-  .catch(err => console.log('Something went wrong in GetBearerToken:', err))
-})
+//   await fetch(`https://api.petfinder.com/v2/animals?get?location=${zipCode}`, {
+//     headers : {
+//       'Authorization': `Bearer ${bearerToken}`,
+//       'Content-Type': 'application/x-www-form-urlencoded'
+//     }
+//   })
+//   .then(res => res.json())
+//   .then(animals => res.send(animals))
+//   .catch(err => console.log('Something went wrong in GetBearerToken:', err))
+// })
 
 // **********************************************************************************************
 
-// import { Client } from '@petfinder/petfinder-js'
-// const client = new Client({ apiKey: clientId, secret: clientSecret })
+import { Client } from '@petfinder/petfinder-js'
+const client = new Client({ apiKey: clientId, secret: clientSecret })
 
-// // generates a user token
-// client.authenticate()
-//   .then(resp => {
-//     const token = resp.data.access_token;
-//     const expires = resp.data.expires_in;
-//     client.config.token = token  // assignment doesn't work
-//     // console.log('**********', client)  // inside here client has bearer token 
-//     // console.log(token)
-//   });
+// generates a user token
+client.authenticate()
+  .then(resp => {
+    const token = resp.data.access_token;
+    const expires = resp.data.expires_in;
+  });
 
-//   // console.log('&&&&&&&&&&&&&&', client) // here client does not have a bearer token
-
-// client.animal.search() // how do I search by location or breed?
-//   .then(function (res) {
-//     res('Server client.animal response', res)
-//   })
-//   .catch(function (err) {
-//     console.log('Error in Server, animal search sdk:', err)
-//   })
+client.animal.search({ location: 94611 }) // search by location
+  .then(res => {
+    app.get('/feed', (req, response) => {
+      response.send(res.data.animals) // animals
+    })
+  })
+  .catch(function (err) {
+    console.log('Error in Server, animal search sdk:', err)
+  })
 
 // **********************************************************************************************
 

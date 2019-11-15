@@ -3,10 +3,11 @@ import './Card.css'
 import Avatar from '@material-ui/core/Avatar';
 
 const Card = (props) => {
-  let photos = props.photos
+  let photos = props.photos // some animals do not have photos
+  // console.log('Photos:', photos)
   return (
     <div className="card">
-      <Avatar>{photos.medium}</Avatar>
+      <Avatar>{photos.length ? photos[0].medium : null}</Avatar>
       <h4>{props.name}</h4>
       <div>{props.age} {props.breeds.primary} | {props.contact.address.city}, {props.contact.address.state}</div>
       <div>{props.gender} - {props.size} - {props.coat} {props.colors.primary}  </div>
@@ -27,12 +28,7 @@ const Card = (props) => {
             null
         }
       <br/>
-      
-      <p>
-        {props.description}
-      </p>
-      
-      
+      <p>{props.description}</p>
     </div>
   )
 }

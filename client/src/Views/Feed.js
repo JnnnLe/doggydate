@@ -26,11 +26,12 @@ const Feed = () => {
 
   const getLocalPets = async () => {
     // get first 20 pets with local zip code from PetFinder API
-    let allPets = await axios.post('http://localhost:3001/feed', {
+    await axios.get('http://localhost:3001/feed', {
       zipCode: zipCode
     })
     .then((response) => {
-      setLocalPets(response.data.animals)
+      console.log('Response from backend:', response)
+      setLocalPets(response.data)
     })
     .catch(err => console.log('Error in GetLocalPets:', err))
   }  
@@ -49,7 +50,7 @@ const Feed = () => {
         USER INFO
       </div>
       <div className="pets">
-        {renderPets()}
+      {renderPets()}
       </div>
     </div>
   )
