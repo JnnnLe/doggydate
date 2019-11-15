@@ -4,10 +4,9 @@ import Avatar from '@material-ui/core/Avatar';
 
 const Card = (props) => {
   let photos = props.photos // some animals do not have photos
-  // console.log('Photos:', photos)
   return (
     <div className="card">
-      <Avatar>{photos.length ? photos[0].medium : null}</Avatar>
+      <Avatar alt={props.name} src={photos.length ? photos[0].full : null} />
       <h4>{props.name}</h4>
       <div>{props.age} {props.breeds.primary} | {props.contact.address.city}, {props.contact.address.state}</div>
       <div>{props.gender} - {props.size} - {props.coat} {props.colors.primary}  </div>

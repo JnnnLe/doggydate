@@ -65,8 +65,7 @@ app.post('/api/user', checkJwt, async (req, res) => {
       name: req.body.name
     })
     return res.status(200).send({ msg: `Successfully added new user: ${newUser}`})
-
-  } else {
+     
     return res.status(202).send({ msg: 'Existing user && authenicated.' })
   }
 })
@@ -75,7 +74,6 @@ const clientId = process.env.PFCLIENTID
 const clientSecret = process.env.PFSECRET
 
 // **********************************************************************************************
-
 
 // // To do: Token expires every hour check to see when the last token was accessed
 
@@ -121,6 +119,8 @@ client.authenticate()
     const expires = resp.data.expires_in;
   });
 
+
+  // get all the animals from a specific zip code
 client.animal.search({ location: 94611 }) // search by location
   .then(res => {
     app.get('/feed', (req, response) => {

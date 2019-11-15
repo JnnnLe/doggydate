@@ -30,7 +30,7 @@ const Feed = () => {
       zipCode: zipCode
     })
     .then((response) => {
-      console.log('Response from backend:', response)
+      // console.log('Response from backend:', response)
       setLocalPets(response.data)
     })
     .catch(err => console.log('Error in GetLocalPets:', err))
@@ -40,8 +40,10 @@ const Feed = () => {
     getLocalPets()
   }, [setLocalPets])
 
+  const cleanPets = localPets.filter( dog => dog.photos.length > 0 )
+
   const renderPets = () => {
-    return localPets.map( dog => <Card key={dog.id} {...dog} /> )
+    return cleanPets.map( dog => <Card key={dog.id} {...dog} /> )
   }
 
   return (
