@@ -5,6 +5,7 @@ import './Feed.css'
 import config from '../auth_config'
 
 const Feed = () => {
+  
   let dirtyZipCode = ''
   const location = navigator.geolocation.getCurrentPosition( async position => {
     let lat = position.coords.latitude
@@ -26,11 +27,11 @@ const Feed = () => {
 
   const getLocalPets = async () => {
     // get first 20 pets with local zip code from PetFinder API
-    await axios.get('http://localhost:3001/feed', {
+    // server endpoint
+    await axios.get('/feed', {
       zipCode: zipCode
     })
     .then((response) => {
-      // console.log('Response from backend:', response)
       setLocalPets(response.data)
     })
     .catch(err => console.log('Error in GetLocalPets:', err))
@@ -40,10 +41,10 @@ const Feed = () => {
     getLocalPets()
   }, [setLocalPets])
 
-  const cleanPets = localPets.filter( dog => dog.photos.length > 0 )
+  const cleanPets = localPets.filter(dog => dog.photos.length > 0)
 
   const renderPets = () => {
-    return cleanPets.map( dog => <Card key={dog.id} {...dog} /> )
+    return cleanPets.map(dog => <Card key={dog.id} {...dog} />)
   }
 
   return (

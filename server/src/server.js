@@ -119,17 +119,24 @@ client.authenticate()
     const expires = resp.data.expires_in;
   });
 
-
-  // get all the animals from a specific zip code
+//   // get all the animals from a specific zip code
 client.animal.search({ location: 94611 }) // search by location
   .then(res => {
     app.get('/feed', (req, response) => {
       response.send(res.data.animals) // animals
     })
   })
-  .catch(function (err) {
-    console.log('Error in Server, animal search sdk:', err)
-  })
+  .catch(err => console.log('Error in Server, animal search sdk:', err))
+
+// // using params get all dogs
+// // client.animalData.type('Dog') // search by type
+// //   .then(res => {
+//     app.get('/feed', (req, response) => {
+//       console.log('Server side With PARAMS res: ', req, '%%%%%%%%%%%%%%%%%%%%%%%%%%', response)
+//       response.send(response.data) // animals
+//     })
+//   // })
+//   // .catch(err => console.log('Error in Server, animal search sdk:', err))  
 
 // **********************************************************************************************
 
