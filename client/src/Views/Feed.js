@@ -37,11 +37,12 @@ const Feed = () => {
     .catch(err => console.log('Error in GetLocalPets:', err))
   }  
 
+
   useEffect(() => {
     getLocalPets()
   }, [setLocalPets])
 
-  const cleanPets = localPets.filter(dog => dog.photos.length > 0)
+  const cleanPets = localPets.filter(dog => dog.photos.length > 0 && dog.species == 'Dog')
 
   const renderPets = () => {
     return cleanPets.map(dog => <Card key={dog.id} {...dog} />)
