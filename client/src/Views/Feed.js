@@ -6,44 +6,36 @@ import './Feed.css'
 import config from '../auth_config'
 
 const Feed = () => {
-  
-  let dirtyZipCode = ''
-  const location = navigator.geolocation.getCurrentPosition( async position => {
-    let lat = position.coords.latitude
-    let long = position.coords.longitude
-    dirtyZipCode = await axios.get(`https://maps.googleapis.com/maps/api/geocode/json?latlng=${lat},${long}&key=${config.googleApi}`)
-    const address = dirtyZipCode.data.results[0].formatted_address
-    cleanZipCode(address)
-  })
+  const [ zipCode, setZipCode ] = useState('')
+  const [ pets, setPets ] = useState([]) 
 
-  const cleanZipCode = address => {
-    let zipCode = address.split(', ')
-    zipCode = zipCode[2].split(' ')
-    zipCode = zipCode[1]
-    setZipCode(zipCode)
-  } 
-
-  const [ zipCode, setZipCode ] = useState()
-  const [ localPets, setLocalPets ] = useState([]) 
-
-  const getLocalPets = async () => {
+  const getPets = async () => {
     // get first 20 pets with local zip code from PetFinder API
-    // server endpoint
-    await axios.get('/feed', {
-      zipCode: zipCode
-    })
+    await axios.get('/feed')
     .then((response) => {
-      setLocalPets(response.data)
+      setPets(response.data)
     })
-    .catch(err => console.log('Error in GetLocalPets:', err))
+    .catch(err => console.log('Error in getPets:', err))
   }  
 
+  const getZip = async (e) => {
+    // get first 20 pets with local zip code from PetFinder API
+    e.preventDefault()
+    await axios.post('/feed/zipCode', {
+      zip: zipCode
+    })
+    .then((response) => {
+      setPets(response.data)
+      // console.log('FE:', response)
+    })
+    .catch(err => console.log('Error in getZip:', err))
+  }  
 
   useEffect(() => {
-    getLocalPets()
-  }, [setLocalPets])
+    getPets()
+  }, [setPets])
 
-  const cleanPets = localPets.filter(dog => dog.photos.length > 0)
+  const cleanPets = pets.filter(dog => dog.photos.length > 0 && dog.species == 'Dog')
 
   const renderPets = () => {
     return cleanPets.map(dog => <Card key={dog.id} {...dog} />)
@@ -52,7 +44,11 @@ const Feed = () => {
   return (
     <div className="feed">
       <NavBar />
-      <input className="search" type="text" placeholder="Search.." onChange={(e) => console.log(e.target.value)}/>
+        <form onSubmit={getZip}>
+          <input className="search" type="text" placeholder="Your newest family member awaits" 
+            value={zipCode}
+            onChange={e => setZipCode(e.target.value)}/>
+        </form>
       <div className="pets">
         {renderPets()}
       </div>
@@ -61,3 +57,19 @@ const Feed = () => {
 }
 
 export default Feed
+
+  // let dirtyZipCode = ''
+  // const location = navigator.geolocation.getCurrentPosition( async position => {
+  //   let lat = position.coords.latitude
+  //   let long = position.coords.longitude
+  //   dirtyZipCode = await axios.get(`https://maps.googleapis.com/maps/api/geocode/json?latlng=${lat},${long}&key=${config.googleApi}`)
+  //   const address = dirtyZipCode.data.results[0].formatted_address
+  //   cleanZipCode(address)
+  // })
+
+  // const cleanZipCode = address => {
+  //   let zipCode = address.split(', ')
+  //   zipCode = zipCode[2].split(' ')
+  //   zipCode = zipCode[1]
+  //   setZipCode(zipCode)
+  // } 

@@ -4,10 +4,6 @@ import Avatar from '@material-ui/core/Avatar';
 import axios from 'axios'
 import { useAuth0 } from '../../react-auth0-spa'
 
-// import Fab from '@material-ui/core/Fab';
-// import FavoriteIcon from '@material-ui/icons/Favorite';
-// import NavigationIcon from '@material-ui/icons/Navigation';
-
 const Card = (props) => {
   const { getTokenSilently, user } = useAuth0()
 

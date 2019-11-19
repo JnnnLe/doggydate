@@ -84,11 +84,44 @@ app.post('/feed/user/petId', checkJwt, async (req, res) => {
 const clientId = process.env.PFCLIENTID
 const clientSecret = process.env.PFSECRET
 
+import { Client } from '@petfinder/petfinder-js'
+const client = new Client({ apiKey: clientId, secret: clientSecret })
+
+// generates a user token
+client.authenticate()
+  .then(resp => {
+    const token = resp.data.access_token;
+    const expires = resp.data.expires_in;
+  });
+
+  
+// get dogs upon load
+app.get('/feed', (req, response) => {
+  client.animal.search({ type: 'Dog' })
+  .then(res => {
+    response.send(res.data.animals)
+  })
+})
+
+// get dogs by zip code
+app.post('/feed/zipCode', (req, response) => {
+  console.log('ZIP HERE:', req.body)
+  client.animal.search({ location: req.body.zip })
+  .then(res => {
+    response.send(res.data.animals)
+  })
+})
+
+export const start = () => {
+  app.listen(expressPort, () => {
+    console.log('doggydate Express server on port 3001')
+  })
+}
+
 // **********************************************************************************************
 
 // // To do: Token expires every hour check to see when the last token was accessed
-
-let bearerToken = ''
+// let bearerToken = ''
 // let zipCode = 0
 // // Call PetFnder API to get bearer token that will be used in the header to make calls
 // // To do: make post request as a get request in the query param more eloquent
@@ -118,53 +151,14 @@ let bearerToken = ''
 //   .catch(err => console.log('Something went wrong in GetBearerToken:', err))
 // })
 
-// **********************************************************************************************
 
-import { Client } from '@petfinder/petfinder-js'
-const client = new Client({ apiKey: clientId, secret: clientSecret })
-
-// generates a user token
-client.authenticate()
-  .then(resp => {
-    const token = resp.data.access_token;
-    const expires = resp.data.expires_in;
-  });
-
-  // get dogs upon load
-client.animal.search({ type: 'Dog' })
-  .then(res => {
-    app.get('/feed', (req, response) => {
-      response.send(res.data.animals) // animals
-    })
-  })
-  .catch(err => console.log('Error in Server, animal search sdk:', err))
-  
-
-// // get pets from a certain area code
+//   // get dogs upon load - WORKING EXAMPLE
 // client.animal.search({ type: 'Dog' })
 //   .then(res => {
-//     app.get('/feed/zipcode', (req, response) => {
+//     app.get('/feed', (req, response) => {
 //       response.send(res.data.animals) // animals
 //     })
 //   })
 //   .catch(err => console.log('Error in Server, animal search sdk:', err))
 
-
-
-// // using params get all dogs
-// // client.animalData.type('Dog') // search by type
-// //   .then(res => {
-//     app.get('/feed', (req, response) => {
-//       console.log('Server side With PARAMS res: ', req, '%%%%%%%%%%%%%%%%%%%%%%%%%%', response)
-//       response.send(response.data) // animals
-//     })
-//   // })
-//   // .catch(err => console.log('Error in Server, animal search sdk:', err))  
-
 // **********************************************************************************************
-
-export const start = () => {
-  app.listen(expressPort, () => {
-    console.log('doggydate Express server on port 3001')
-  })
-}
