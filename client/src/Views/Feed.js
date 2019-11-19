@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import axios from 'axios'
 import Card from '../Components/Card/Card'
+import NavBar from '../Components/NavBar'
 import './Feed.css'
 import config from '../auth_config'
 
@@ -42,7 +43,7 @@ const Feed = () => {
     getLocalPets()
   }, [setLocalPets])
 
-  const cleanPets = localPets.filter(dog => dog.photos.length > 0 && dog.species == 'Dog')
+  const cleanPets = localPets.filter(dog => dog.photos.length > 0)
 
   const renderPets = () => {
     return cleanPets.map(dog => <Card key={dog.id} {...dog} />)
@@ -50,11 +51,9 @@ const Feed = () => {
 
   return (
     <div className="feed">
-      <div className="nav"> 
-        USER INFO
-      </div>
+      <NavBar />
       <div className="pets">
-      {renderPets()}
+        {renderPets()}
       </div>
     </div>
   )

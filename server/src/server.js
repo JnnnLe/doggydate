@@ -132,8 +132,9 @@ client.authenticate()
   });
 
 //   // get all the animals from a specific zip code
-client.animal.search({ location: 'CA' }) // search by location
+client.animal.search({ type: 'Dog' }) // search by location
   .then(res => {
+    console.log('This is the ...res:', res)
     app.get('/feed', (req, response) => {
       response.send(res.data.animals) // animals
     })

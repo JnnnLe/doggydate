@@ -4,7 +4,7 @@ import { useAuth0 } from './react-auth0-spa'
 import './App.css'
 import Login from './Components/Login/Login'
 import Feed from './Views/Feed'
-import NavBar from './Components/NavBar'
+
 import PrivateRoute from './Components/PrivateRoute'
 
 // Todo: React router to link to Feed.js or any other views
@@ -14,9 +14,7 @@ const App = () => {
 
   return (
     <div className='App'>
-
       <Router>
-        <NavBar />
         <div>
           <Switch>
             <Route exact path='/' component={Login}/>
@@ -24,7 +22,6 @@ const App = () => {
           </Switch>
         </div>
       </Router>
-
     </div>
   )
 }
