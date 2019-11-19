@@ -71,7 +71,7 @@ app.post('/api/user', checkJwt, async (req, res) => {
 })
 
 // // add favorited pet to authorized user
-app.post('/feed/user/petId', async (req, res) => {
+app.post('/feed/user/petId', checkJwt, async (req, res) => {
   let user = await User.updateOne( { email: req.body.user.email }, { $push: {likedAnimals: [req.body.pet]}} )
 
 
@@ -134,7 +134,6 @@ client.authenticate()
 //   // get all the animals from a specific zip code
 client.animal.search({ type: 'Dog' }) // search by location
   .then(res => {
-    console.log('This is the ...res:', res)
     app.get('/feed', (req, response) => {
       response.send(res.data.animals) // animals
     })

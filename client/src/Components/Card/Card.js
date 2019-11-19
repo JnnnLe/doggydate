@@ -15,11 +15,13 @@ const Card = (props) => {
     const token = await getTokenSilently() 
 
     await axios.post('/feed/user/petId', {
-      headers: {
-        Authorization: `Bearer ${token}`
-      },
       pet: petObject,
       user: user
+    },
+    {
+      headers: {
+      Authorization: `Bearer ${token}`
+      }
     })
     .then((response) => {
       console.log('Successfully favorited: ', petObject.name)
