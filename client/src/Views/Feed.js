@@ -52,6 +52,7 @@ const Feed = () => {
   return (
     <div className="feed">
       <NavBar />
+      <input className="search" type="text" placeholder="Search.." onChange={(e) => console.log(e.target.value)}/>
       <div className="pets">
         {renderPets()}
       </div>

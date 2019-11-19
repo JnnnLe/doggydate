@@ -72,8 +72,7 @@ app.post('/api/user', checkJwt, async (req, res) => {
 
 // // add favorited pet to authorized user
 app.post('/feed/user/petId', checkJwt, async (req, res) => {
-  let user = await User.updateOne( { email: req.body.user.email }, { $push: {likedAnimals: [req.body.pet]}} )
-
+  let user = await User.updateOne( { email: req.body.user.email }, { $push: {likedAnimals: [req.body.pet]} })
 
   if (user !== null) {
     return res.status(200).send({ msg: `Successfully added pet ${user.likedAnimals}`})
@@ -89,7 +88,7 @@ const clientSecret = process.env.PFSECRET
 
 // // To do: Token expires every hour check to see when the last token was accessed
 
-// let bearerToken = ''
+let bearerToken = ''
 // let zipCode = 0
 // // Call PetFnder API to get bearer token that will be used in the header to make calls
 // // To do: make post request as a get request in the query param more eloquent
@@ -131,14 +130,26 @@ client.authenticate()
     const expires = resp.data.expires_in;
   });
 
-//   // get all the animals from a specific zip code
-client.animal.search({ type: 'Dog' }) // search by location
+  // get dogs upon load
+client.animal.search({ type: 'Dog' })
   .then(res => {
     app.get('/feed', (req, response) => {
       response.send(res.data.animals) // animals
     })
   })
   .catch(err => console.log('Error in Server, animal search sdk:', err))
+  
+
+// // get pets from a certain area code
+// client.animal.search({ type: 'Dog' })
+//   .then(res => {
+//     app.get('/feed/zipcode', (req, response) => {
+//       response.send(res.data.animals) // animals
+//     })
+//   })
+//   .catch(err => console.log('Error in Server, animal search sdk:', err))
+
+
 
 // // using params get all dogs
 // // client.animalData.type('Dog') // search by type
