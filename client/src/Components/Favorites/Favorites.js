@@ -16,16 +16,21 @@ const Favorites = () => {
           Authorization: `Bearer ${token}`
         }
       })
-      .then(response => console.log('Favorites FE:', response))
+      .then(response => setFavorites(response.data))
+      .catch(err => console.log('Error in GetFavorites', err))
   }
 
   useEffect(() => {
     getFavorites()
   }, [user])
 
-
+  const renderPets = () => {
+    return favorites.map(dog => <Card key={dog.id} {...dog} />)
+  }
     return (
-      <div>Hello</div>
+      <div>
+        <h2>Your Saved Pets</h2>{renderPets()}
+      </div>
     )
 }
 
