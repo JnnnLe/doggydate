@@ -12,26 +12,27 @@ const Login = () => {
   const [ password, setPassword ] = useState('')
   
   return (
-    <div className="login">
-      <div className="loginLeft" />
-      <div className="loginRight">
-        <h1 className="loginHeader">Welcome to doggydate</h1>
-        <br />
-        {!isAuthenticated && (
-          <Button
-          variant="contained"
-          className="loginButton"
-          onClick={() =>
-            loginWithRedirect({})
-            }
-          >
-            Let's begin
-          </Button>
-        )}
-
+    <div>
+      {isAuthenticated ? 
+        <Redirect from='/' to='/feed' /> : 
+        <div className="login">
+          <div className="loginLeft" />
+          <div className="loginRight">
+            <h1 className="loginHeader">Welcome to doggydate</h1>
+            <br />
+            
+              <Button
+              variant="contained"
+              className="loginButton"
+              onClick={() =>
+                loginWithRedirect({})
+                }
+              >
+                Let's begin
+              </Button>
+          </div>
+        </div>}
       </div>
-    </div>
   )
 }
-
 export default Login

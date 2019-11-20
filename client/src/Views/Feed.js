@@ -3,15 +3,21 @@ import axios from 'axios'
 import Card from '../Components/Card/Card'
 import NavBar from '../Components/NavBar'
 import './Feed.css'
-import config from '../auth_config'
+import { useAuth0 } from '../react-auth0-spa'
 
 const Feed = () => {
+  const { getTokenSilently } = useAuth0()
   const [ zipCode, setZipCode ] = useState('')
   const [ pets, setPets ] = useState([]) 
-
+  
   const getPets = async () => {
+    const token = await getTokenSilently()
     // get first 20 pets with local zip code from PetFinder API
-    await axios.get('/feed')
+    await axios.get('/feed', {
+      headers: {
+        Authorization: `Bearer ${token}`
+      }
+    })
     .then((response) => {
       setPets(response.data)
     })
@@ -21,12 +27,17 @@ const Feed = () => {
   const getZip = async (e) => {
     // get first 20 pets with local zip code from PetFinder API
     e.preventDefault()
-    await axios.post('/feed/zipCode', {
-      zip: zipCode
+    const token = await getTokenSilently()
+    await axios.get('/feed/zipCode', {
+      params: {
+        zipCode
+      },
+      headers: {
+        Authorization: `Bearer ${token}`
+      }
     })
     .then((response) => {
       setPets(response.data)
-      // console.log('FE:', response)
     })
     .catch(err => console.log('Error in getZip:', err))
   }  
@@ -35,7 +46,7 @@ const Feed = () => {
     getPets()
   }, [setPets])
 
-  const cleanPets = pets.filter(dog => dog.photos.length > 0 && dog.species == 'Dog')
+  const cleanPets = pets.filter(dog => dog.photos.length > 0 && dog.species === 'Dog')
 
   const renderPets = () => {
     return cleanPets.map(dog => <Card key={dog.id} {...dog} />)
@@ -57,19 +68,3 @@ const Feed = () => {
 }
 
 export default Feed
-
-  // let dirtyZipCode = ''
-  // const location = navigator.geolocation.getCurrentPosition( async position => {
-  //   let lat = position.coords.latitude
-  //   let long = position.coords.longitude
-  //   dirtyZipCode = await axios.get(`https://maps.googleapis.com/maps/api/geocode/json?latlng=${lat},${long}&key=${config.googleApi}`)
-  //   const address = dirtyZipCode.data.results[0].formatted_address
-  //   cleanZipCode(address)
-  // })
-
-  // const cleanZipCode = address => {
-  //   let zipCode = address.split(', ')
-  //   zipCode = zipCode[2].split(' ')
-  //   zipCode = zipCode[1]
-  //   setZipCode(zipCode)
-  // } 

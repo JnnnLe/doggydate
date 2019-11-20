@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect } from 'react'
 import { Route } from 'react-router-dom'
 import { useAuth0 } from '../react-auth0-spa'
 import axios from 'axios'
@@ -7,7 +7,7 @@ const PrivateRoute = ({ component: Component, path, ...rest }) => {
   const { loading, isAuthenticated, loginWithRedirect, user, getTokenSilently } = useAuth0()
 
   useEffect(() => {
-    if (isAuthenticated) {
+    if (isAuthenticated && user) {
       registerUser(user, getTokenSilently)
     }
 
@@ -23,7 +23,7 @@ const PrivateRoute = ({ component: Component, path, ...rest }) => {
 
     fn()
 
-  }, [loading, isAuthenticated, loginWithRedirect, path])
+  }, [loading, isAuthenticated, loginWithRedirect, getTokenSilently, user, path])
 
   const render = props => isAuthenticated === true ? <Component {...props} /> : null
 
@@ -34,7 +34,7 @@ const PrivateRoute = ({ component: Component, path, ...rest }) => {
 const registerUser = async (user, fn) => {
   try {
     const token = await fn();
-    const newUser = await axios.post('/api/user',
+    await axios.post('/api/user',
       {
         email: user.email,
         name: user.name

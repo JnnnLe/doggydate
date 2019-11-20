@@ -96,7 +96,7 @@ client.authenticate()
 
   
 // get dogs upon load
-app.get('/feed', (req, response) => {
+app.get('/feed', checkJwt, (req, response) => {
   client.animal.search({ type: 'Dog' })
   .then(res => {
     response.send(res.data.animals)
@@ -104,9 +104,8 @@ app.get('/feed', (req, response) => {
 })
 
 // get dogs by zip code
-app.post('/feed/zipCode', (req, response) => {
-  console.log('ZIP HERE:', req.body)
-  client.animal.search({ location: req.body.zip })
+app.get('/feed/zipCode', checkJwt, (req, response) => {
+  client.animal.search({ location: req.query.zipCode })
   .then(res => {
     response.send(res.data.animals)
   })
@@ -117,48 +116,3 @@ export const start = () => {
     console.log('doggydate Express server on port 3001')
   })
 }
-
-// **********************************************************************************************
-
-// // To do: Token expires every hour check to see when the last token was accessed
-// let bearerToken = ''
-// let zipCode = 0
-// // Call PetFnder API to get bearer token that will be used in the header to make calls
-// // To do: make post request as a get request in the query param more eloquent
-// app.post('/feed', async (req, res) => {
-//   zipCode = req.body.zipCode
-//   // Make request for OAuth token
-//   await fetch('https://api.petfinder.com/v2/oauth2/token', {
-//     method: 'POST',
-//     body: `grant_type=client_credentials&client_id=${clientId}&client_secret=${clientSecret}`,
-//     headers: {
-//       'Content-Type': 'application/x-www-form-urlencoded'
-//     }
-//   })
-//   .then(resp => resp.json())
-//   .then(data => {
-//     bearerToken = data.access_token
-//   })
-
-//   await fetch(`https://api.petfinder.com/v2/animals?get?location=${zipCode}`, {
-//     headers : {
-//       'Authorization': `Bearer ${bearerToken}`,
-//       'Content-Type': 'application/x-www-form-urlencoded'
-//     }
-//   })
-//   .then(res => res.json())
-//   .then(animals => res.send(animals))
-//   .catch(err => console.log('Something went wrong in GetBearerToken:', err))
-// })
-
-
-//   // get dogs upon load - WORKING EXAMPLE
-// client.animal.search({ type: 'Dog' })
-//   .then(res => {
-//     app.get('/feed', (req, response) => {
-//       response.send(res.data.animals) // animals
-//     })
-//   })
-//   .catch(err => console.log('Error in Server, animal search sdk:', err))
-
-// **********************************************************************************************

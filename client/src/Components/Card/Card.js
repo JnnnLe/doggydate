@@ -25,7 +25,6 @@ const Card = (props) => {
     .catch(err => console.log(`Error in Error occurred when adding ${petObject.name} to favorites:`, err))
   }  
 
-
   let photos = props.photos // some animals do not have photos
   return (
     <div className="card">
@@ -36,11 +35,11 @@ const Card = (props) => {
         <div>{props.gender} - {props.size} - {props.coat} {props.colors.primary}  </div>
         <h4>About</h4>
         <div>{props.status}</div> 
-        <>{props.description}</>
+        {props.description}
         <br/>
         {
           props.attributes.house_trained ? 
-          "I am house trained." : 
+          <b>I am house trained.</b> : 
           null 
         }
         <br/>
