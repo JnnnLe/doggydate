@@ -1,7 +1,8 @@
 import React from 'react'
 import './App.css'
 import Login from './Components/Login/Login'
-import Feed from './Views/Feed'
+import Feed from './Components/Feed/Feed'
+import Favorites from './Components/Favorites/Favorites'
 
 import PrivateRoute from './Components/PrivateRoute'
 
@@ -14,8 +15,9 @@ const App = () => {
       <Router>
         <div>
           <Switch>
-            <Route exact path='/' component={Login}/>
+            <Route exact path='/' component={Login} />
             <PrivateRoute path='/feed' component={Feed} />
+            <PrivateRoute path='/favorites' component={Favorites} />
           </Switch>
         </div>
       </Router>

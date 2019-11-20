@@ -111,6 +111,12 @@ app.get('/feed/zipCode', checkJwt, (req, response) => {
   })
 })
 
+// get favorited pets
+app.get('/favorites', checkJwt, async(req, res) => {
+  let user = await User.findOne({ email: req.query.email })
+  return res.send((user.likedAnimals))
+})
+  
 export const start = () => {
   app.listen(expressPort, () => {
     console.log('doggydate Express server on port 3001')

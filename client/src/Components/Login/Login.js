@@ -4,7 +4,7 @@ import { BrowserRouter as Router, Link, Redirect } from 'react-router-dom'
 import './Login.css'
 import Button from '@material-ui/core/Button'
 import { useAuth0 } from "../../react-auth0-spa";
-import Feed from '../../Views/Feed'
+import Feed from '../Feed/Feed'
 
 const Login = () => {
   const { isAuthenticated, loginWithRedirect, logout } = useAuth0();

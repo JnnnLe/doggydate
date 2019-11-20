@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from 'react'
 import axios from 'axios'
-import Card from '../Components/Card/Card'
-import NavBar from '../Components/NavBar'
+import Card from '../Card/Card'
+import NavBar from '../NavBar'
 import './Feed.css'
-import { useAuth0 } from '../react-auth0-spa'
+import { useAuth0 } from '../../react-auth0-spa'
 
 const Feed = () => {
   const { getTokenSilently } = useAuth0()
