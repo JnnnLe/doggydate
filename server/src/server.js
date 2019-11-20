@@ -9,7 +9,7 @@ import jwksRsa from 'jwks-rsa'
 import axios from 'axios'
 import fetch from 'node-fetch'
 
-let expressPort = 3001
+let expressPort = process.env.PORT || 3001
 
 const uri = `mongodb+srv://${process.env.DB_USER}:${process.env.DB_PASSWORD}@doggydate-biwhc.gcp.mongodb.net/api?retryWrites=true&w=majority`
 mongoose.connect(uri, { useNewUrlParser: true, useUnifiedTopology: true, useCreateIndex: true })
