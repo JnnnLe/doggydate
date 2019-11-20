@@ -3,23 +3,26 @@ import React from 'react'
 import { Link } from 'react-router-dom'
 
 import { useAuth0 } from '../react-auth0-spa'
+import { FaHeart } from "react-icons/fa";
 
 const NavBar = () => {
-  const { isAuthenticated, loginWithRedirect, logout } = useAuth0()
+  const { isAuthenticated, loginWithRedirect, logout, user, loading } = useAuth0()
+  if (loading || !user) {
+    return <div>Loading...</div>;
+  }
 
   return (
     <div>
       {!isAuthenticated && (
         <button onClick={() => loginWithRedirect({})}>Log in</button>
       )}
-
+      
+      <img src={user.picture} alt="Profile" />
+      <h2>{user.name}</h2>
+      
+      <FaHeart />
       {isAuthenticated && <button onClick={() => logout()}>Log out</button>}
 
-      {isAuthenticated && (
-        <span>
-        <Link to='/'>Home</Link>&nbsp;
-        </span>
-      )}
     </div>
   )
 }
