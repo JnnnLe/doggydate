@@ -20,7 +20,10 @@ const NavBar = () => {
       <img src={user.picture} alt="Profile" />
       <h2>{user.name}</h2>
       
-      <Link to="/favorites"><FaHeart /></Link>
+      <Link to="/feed"> Home </Link>
+      <br/>
+      <Link to="/favorites"> FAVORITES <FaHeart /></Link>
+      <br/>
       {isAuthenticated && <button onClick={() => logout()}>Log out</button>}
 
     </div>
