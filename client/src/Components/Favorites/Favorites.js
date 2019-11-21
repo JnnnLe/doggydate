@@ -29,9 +29,11 @@ const Favorites = () => {
     return favorites.map(dog => <Card key={dog.id} {...dog} />)
   }
     return (
-      <div>
+      <div className="favorites">
         <SideBar />
-        <h2>Your Saved Pets</h2>{renderPets()}
+        <div>
+          <h2>Your Saved Pets</h2>{renderPets()}
+        </div>
       </div>
     )
 }

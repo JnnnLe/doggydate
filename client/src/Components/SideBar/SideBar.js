@@ -21,18 +21,23 @@ const SideBar = () => {
 
       {isAuthenticated && (
         <div>
-          <nav className="menu" tabIndex="0">
-            <div className="smartphone-menu-trigger"></div>
-            <header className="avatar">
-              <img src={user.picture} alt="Profile" />
-              <h2>{user.name}</h2>
-            </header>
+          <main className="main">
+          <aside className="sidebar">
+          <header className="avatar">
+            <img src={user.picture} alt="Profile" />
+          </header>
+          <nav className="nav">
             <ul>
-              <li tabIndex="0" className="favorites"><Link to="/favorites"><span><FaHeart /></span></Link></li>
-              <li tabIndex="0" className="home"><Link to="/"><span><TiHome /></span></Link></li>
-              <li tabIndex="0" className="logout"><button onClick={() => logout()}>Log out</button></li>
+              <li className="active"><a href="#">Welcome {user.name}</a></li>
+              <li className="favorites"><a href="/favorites"> Favorites <FaHeart />  </a></li>
+              <li className="home"><a href="/feed"> Home <TiHome /> </a></li>
+              <li className="logout"><button onClick={() => logout()}>Logout</button></li>
             </ul>
           </nav>
+          </aside>
+
+
+          </main>
         </div>
       )}
 
@@ -41,5 +46,3 @@ const SideBar = () => {
 }
 
 export default SideBar
-
-// {isAuthenticated && ( ... remeber to encase the nav )}

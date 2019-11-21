@@ -55,13 +55,15 @@ const Feed = () => {
   return (
     <div className="feed">
       <SideBar />
+      <div>
         <form onSubmit={getZip}>
-          <input className="search" type="text" placeholder="Your newest family member awaits" 
-            value={zipCode}
-            onChange={e => setZipCode(e.target.value)}/>
+        <input className="search" type="text" placeholder="Your newest family member awaits" 
+        value={zipCode}
+        onChange={e => setZipCode(e.target.value)}/>
         </form>
-      <div className="pets">
-        {renderPets()}
+        <div className="pets">
+          {renderPets()}
+        </div>
       </div>
     </div>
   )
