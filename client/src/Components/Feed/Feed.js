@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import axios from 'axios'
 import Card from '../Card/Card'
-import NavBar from '../NavBar'
+import SideBar from '../SideBar/SideBar'
 import './Feed.css'
 import { useAuth0 } from '../../react-auth0-spa'
 
@@ -54,7 +54,7 @@ const Feed = () => {
 
   return (
     <div className="feed">
-      <NavBar />
+      <SideBar />
         <form onSubmit={getZip}>
           <input className="search" type="text" placeholder="Your newest family member awaits" 
             value={zipCode}
