@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react'
 import Card from '../Card/Card'
 import { useAuth0 } from '../../react-auth0-spa'
 import axios from 'axios'
+import SideBar from '../SideBar/SideBar'
 
 const Favorites = () => {
   const { getTokenSilently, user } = useAuth0()
@@ -29,6 +30,7 @@ const Favorites = () => {
   }
     return (
       <div>
+        <SideBar />
         <h2>Your Saved Pets</h2>{renderPets()}
       </div>
     )
