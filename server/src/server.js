@@ -9,8 +9,6 @@ import jwksRsa from 'jwks-rsa'
 import axios from 'axios'
 import fetch from 'node-fetch'
 
-let expressPort = process.env.PORT || 3001
-
 const uri = `mongodb+srv://${process.env.DB_USER}:${process.env.DB_PASSWORD}@doggydate-biwhc.gcp.mongodb.net/api?retryWrites=true&w=majority`
 mongoose.connect(uri, { useNewUrlParser: true, useUnifiedTopology: true, useCreateIndex: true })
 
@@ -116,9 +114,10 @@ app.get('/favorites', checkJwt, async(req, res) => {
   let user = await User.findOne({ email: req.query.email })
   return res.send((user.likedAnimals))
 })
-  
+
+let PORT = process.env.PORT || 3001
 export const start = () => {
-  app.listen(expressPort, () => {
-    console.log('doggydate Express server on port 3001')
+  app.listen(PORT, () => {
+    console.log(`doggydate Express server on port ${PORT}`)
   })
 }
