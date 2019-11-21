@@ -23,8 +23,8 @@ Front-end:
   ```yarn start```
 
 ## API
-[Auth0](https://auth0.com/docs) - Authenication 
-[PetFinder](https://www.petfinder.com/developers/) - Pet Data
+[Auth0](https://auth0.com/docs) - User Authenication 
+[PetFinder](https://www.petfinder.com/developers/) - Authenicated Pet Data
 
 
 ## Author and acknowledgements
