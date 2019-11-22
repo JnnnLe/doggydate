@@ -9,8 +9,9 @@
 }
 .loginHeader {
   font-family: 'Tiempos Text';
-  font-size: 58px;
-  margin-top: -110px;;
+  font-size: 59px;
+  margin-top: -110px;
+  padding-top: 45px;
 }
 .loginButton {
   background-color: #21B3B3 !important;

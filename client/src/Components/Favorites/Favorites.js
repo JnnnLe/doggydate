@@ -31,9 +31,12 @@ const Favorites = () => {
     return (
       <div className="favorites">
         <SideBar />
-        <h2>Your Saved Pets</h2>
-        <div className="pets">
-          {renderPets()}
+        <div>
+          <h2>Your Saved Pets</h2>
+          <div className="pets">
+            {renderPets()}
+          </div>
+        
         </div>
       </div>
     )
