@@ -24,6 +24,7 @@ Front-end:
 
 ## API
 [Auth0](https://auth0.com/docs) - User Authenication 
+<br>
 [PetFinder](https://www.petfinder.com/developers/) - Authenicated Pet Data
 
 

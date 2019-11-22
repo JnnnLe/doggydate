@@ -23,7 +23,7 @@ const SideBar = () => {
         <div>
           <main className="main">
           <aside className="sidebar">
-          <header className="avatar">
+          <header className="user-avatar">
             <img src={user.picture} alt="Profile" />
           </header>
           <nav className="nav">
