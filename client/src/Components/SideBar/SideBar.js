@@ -31,12 +31,10 @@ const SideBar = () => {
               <li className="active"><a href="#">Welcome {user.name}</a></li>
               <li className="favorites"><a href="/favorites"> Favorites <FaHeart />  </a></li>
               <li className="home"><a href="/feed"> Home <TiHome /> </a></li>
-              <li className="logout"><button onClick={() => logout()}>Logout</button></li>
+              <li className="logout"><Link onClick={() => logout()}> Logout <TiHome /> </Link></li>
             </ul>
           </nav>
           </aside>
-
-
           </main>
         </div>
       )}
