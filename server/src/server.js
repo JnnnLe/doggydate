@@ -47,8 +47,8 @@ const checkJwt = jwt({
 });
 
 // Define an endpoint that must be called with an access token
-app.get('/api/external', checkJwt, (req, res) => {
-  res.send({
+app.get('/api/external', checkJwt, async (req, res) => {
+  await res.send({
     msg: 'Your Access Token was successfully validated!'
   });
 });
@@ -94,16 +94,16 @@ client.authenticate()
 
   
 // get dogs upon load
-app.get('/feed', checkJwt, (req, response) => {
-  client.animal.search({ type: 'Dog' })
+app.get('/feed', checkJwt, async (req, response) => {
+  await client.animal.search({ type: 'Dog' })
   .then(res => {
     response.send(res.data.animals)
   })
 })
 
 // get dogs by zip code
-app.get('/feed/zipCode', checkJwt, (req, response) => {
-  client.animal.search({ location: req.query.zipCode })
+app.get('/feed/zipCode', checkJwt, async (req, response) => {
+  await client.animal.search({ location: req.query.zipCode })
   .then(res => {
     response.send(res.data.animals)
   })
