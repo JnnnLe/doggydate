@@ -56,10 +56,11 @@ const Feed = () => {
     <div className="feed">
       <SideBar />
       <div>
+        <header> doggydate </header>
         <form onSubmit={getZip}>
-        <input className="search" type="text" placeholder="Your newest family member awaits" 
-        value={zipCode}
-        onChange={e => setZipCode(e.target.value)}/>
+          <input className="search_input" type="text" placeholder="Your newest family member awaits.." 
+          value={zipCode}
+          onChange={e => setZipCode(e.target.value)}/>
         </form>
         <div className="pets">
           {renderPets()}

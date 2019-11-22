@@ -4,8 +4,9 @@ import { Link } from 'react-router-dom'
 import './SideBar.css'
 
 import { useAuth0 } from '../../react-auth0-spa'
-import { FaHeart } from "react-icons/fa";
-import { TiHome } from "react-icons/ti";
+import { FaHeart } from "react-icons/fa"
+import { TiHome } from "react-icons/ti"
+import { GoRocket } from "react-icons/go"
 
 const SideBar = () => {
   const { isAuthenticated, loginWithRedirect, logout, user, loading } = useAuth0()
@@ -29,9 +30,9 @@ const SideBar = () => {
           <nav className="nav">
             <ul>
               <li className="active"><a href="#">Welcome {user.name}</a></li>
-              <li className="favorites"><a href="/favorites"> Favorites <FaHeart />  </a></li>
-              <li className="home"><a href="/feed"> Home <TiHome /> </a></li>
-              <li className="logout"><Link onClick={() => logout()}> Logout <TiHome /> </Link></li>
+              <li className="favorites"><a href="/favorites"> Favorites <FaHeart size={20} />  </a></li>
+              <li className="home"><a href="/feed"> Home <TiHome size={24} /> </a></li>
+              <li className="logout"><Link onClick={() => logout()}> Logout <GoRocket size={24} /> </Link></li>
             </ul>
           </nav>
           </aside>
