@@ -22,7 +22,7 @@ const Favorites = () => {
   }
 
   useEffect(() => {
-    getFavorites()
+    user && getFavorites()
   }, [user])
 
   const renderPets = () => {
