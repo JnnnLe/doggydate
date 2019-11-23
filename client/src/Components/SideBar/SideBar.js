@@ -25,7 +25,7 @@ const SideBar = () => {
           <main className="main">
           <aside className="sidebar">
           <header className="user-avatar">
-            <img src={user.picture} alt="Profile" />
+            <img className="avatar" src={user.picture} alt="Profile" />
           </header>
           <nav className="nav">
             <ul>

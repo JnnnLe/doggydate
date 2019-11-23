@@ -1,6 +1,5 @@
-.card {
-  display: grid;
-  grid-template-columns: 1fr 2fr;
+/* .card {
+max-width: 300px;
 }
 
 .avatar {
@@ -12,4 +11,4 @@
 .info {
   align-self: center;
   text-align: center;
-}
+} */

@@ -30,6 +30,7 @@ header {
   backface-visibility: hidden;
   transform-style: preserve-3d;
 }
+
 .search_input::placeholder {
   color: color(#575756 a(0.8));
   text-transform: uppercase;
@@ -44,4 +45,8 @@ header {
   background-position: 100% center;
 }
 
+.pets {
+  display: inline-flex;
+  flex-wrap: wrap;
+}
 
