@@ -5,10 +5,20 @@ import { FaHeart } from "react-icons/fa"
 import axios from 'axios'
 import { useAuth0 } from '../../react-auth0-spa'
 
+import { toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+
+toast.configure()
+
 const SmallCard = (props) => {
   const { getTokenSilently, user } = useAuth0()
 
+  
   const AddPetToFavorite = async petObject => {
+    const notify = () => toast(`You saved ${petObject.name} to your favorites!`, {
+      className: 'toast'
+    });
+    notify()
     const token = await getTokenSilently() 
 
     await axios.post('/feed/user/petId', {

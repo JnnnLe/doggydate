@@ -39,3 +39,8 @@
   cursor: pointer;
 }
 
+.toast {
+  background-color: #22B2B3 !important;
+  font-size: 18px !important;
+  color: #fff !important;
+}

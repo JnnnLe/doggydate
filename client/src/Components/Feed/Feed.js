@@ -4,15 +4,13 @@ import SmallCard from '../SmallCard/SmallCard'
 import SideBar from '../SideBar/SideBar'
 import './Feed.css'
 import { useAuth0 } from '../../react-auth0-spa'
-import { ToastContainer, toast } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
+
 
 const Feed = () => {
   const { getTokenSilently } = useAuth0()
   const [ zipCode, setZipCode ] = useState('')
   const [ pets, setPets ] = useState([]) 
   
-  notify = () => toast("Wow so easy !");
 
   const getPets = async () => {
     const token = await getTokenSilently()
