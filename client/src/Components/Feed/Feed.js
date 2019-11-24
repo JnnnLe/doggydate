@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import axios from 'axios'
-import Card from '../Card/Card'
+import SmallCard from '../SmallCard/SmallCard'
 import SideBar from '../SideBar/SideBar'
 import './Feed.css'
 import { useAuth0 } from '../../react-auth0-spa'
@@ -10,6 +10,7 @@ const Feed = () => {
   const [ zipCode, setZipCode ] = useState('')
   const [ pets, setPets ] = useState([]) 
   
+
   const getPets = async () => {
     const token = await getTokenSilently()
     // get first 20 pets with local zip code from PetFinder API
@@ -49,16 +50,15 @@ const Feed = () => {
   const cleanPets = pets.filter(dog => dog.photos.length > 0 && dog.species === 'Dog')
 
   const renderPets = () => {
-    return cleanPets.map(dog => <Card key={dog.id} {...dog} />)
+    return cleanPets.map(dog => <SmallCard key={dog.id} {...dog} />)
   }
 
   return (
     <div className="feed">
       <SideBar />
       <div>
-        <header> doggydate </header>
         <form onSubmit={getZip}>
-          <input className="search_input" type="text" placeholder="Your newest family member awaits.." 
+          <input className="search_input" type="text" placeholder="Enter zip code" 
           value={zipCode}
           onChange={e => setZipCode(e.target.value)}/>
         </form>

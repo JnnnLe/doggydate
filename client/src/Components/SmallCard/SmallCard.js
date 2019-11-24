@@ -1,65 +1,59 @@
-// import React from 'react'
-// import './SmallCard.css'
-// import Avatar from '@material-ui/core/Avatar';
-// import axios from 'axios'
-// import { useAuth0 } from '../../react-auth0-spa'
+import React from 'react'
+import './SmallCard.css'
+import Avatar from '@material-ui/core/Avatar';
+import { FaHeart } from "react-icons/fa"
+import axios from 'axios'
+import { useAuth0 } from '../../react-auth0-spa'
 
-// const SmallCard = (props) => {
-//   const { getTokenSilently, user } = useAuth0()
+import { toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
-//   const AddPetToFavorite = async petObject => {
-//     const token = await getTokenSilently() 
+toast.configure()
 
-//     await axios.post('/feed/user/petId', {
-//       pet: petObject,
-//       user: user
-//     },
-//     {
-//       headers: {
-//       Authorization: `Bearer ${token}`
-//       }
-//     })
-//     .then((response) => {
-//       console.log('Successfully favorited: ', petObject.name)
-//     })
-//     .catch(err => console.log(`Error in Error occurred when adding ${petObject.name} to favorites:`, err))
-//   }  
+const SmallCard = (props) => {
+  const { getTokenSilently, user } = useAuth0()
 
-//   let photos = props.photos // some animals do not have photos
-//   return (
-//     <div className="SmallCard">
-//       <Avatar className="avatar" alt={props.name} src={photos.length ? photos[0].medium : null} />
-//       <div className="info">
-//         <h4>{props.name !== null ? props.name : null}</h4>
-//         <div>{props.age} {props.breeds.primary} | {props.contact.address.city}, {props.contact.address.state}</div>
-//         <div>{props.gender} - {props.size} - {props.coat} {props.colors.primary}  </div>
-//         <h4>About</h4>
-//         <div>{props.status}</div> 
-//         {props.description}
-//         <br/>
-//         {
-//           props.attributes.house_trained ? 
-//           <b>I am house trained.</b> : 
-//           null 
-//         }
-//         <br/>
-//         {
-//           props.attributes.shots_current ? 
-//             "Vaccinations up to date, spayed / neutered." : 
-//             "Work in progress, to be spayed / neutered and shots to be had"
-//         } 
-//         {
-//           props.attributes.special_needs ?
-//             <b>Special Needs dog</b> :
-//             null
-//         }
-//       </div>
-//       <div> <button id={props.id} 
-//         onClick={(e)=> AddPetToFavorite(props)}>
-//         ❤️
-//       </button></div>
-//     </div>
-//   )
-// }
+  
+  const AddPetToFavorite = async petObject => {
+    const notify = () => toast(`You saved ${petObject.name} to your favorites!`, {
+      className: 'toast'
+    });
+    notify()
+    const token = await getTokenSilently() 
 
-// export default SmallCard
+    await axios.post('/feed/user/petId', {
+      pet: petObject,
+      user: user
+    },
+    {
+      headers: {
+      Authorization: `Bearer ${token}`
+      }
+    })
+    .then((response) => {
+      console.log('Successfully favorited: ', petObject.name)
+    })
+    .catch(err => console.log(`Error in Error occurred when adding ${petObject.name} to favorites:`, err))
+  }  
+
+  let photos = props.photos // some animals do not have photos
+  return (
+    <div className="card">
+      <div className="card__photo">
+      <img className="card__photo-img" alt={props.name} src={photos[0].medium} />
+      </div>
+      <div className="card__details">
+        <h4 className="card__details-name">{props.name}</h4>
+        <h5 className="card__details-breed">{props.age} {props.breeds.primary}</h5>
+        <p className="card__details-location">{props.contact.address.city}, {props.contact.address.state}</p>
+        </div>
+      <div className="card__favorite">
+      <a id={props.id} onClick={(e)=> AddPetToFavorite(props)}>
+      <FaHeart className="fun" color="#F72067" />
+      </a>
+      </div>
+    </div>
+  )
+}
+
+export default SmallCard

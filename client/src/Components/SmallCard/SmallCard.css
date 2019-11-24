@@ -1,0 +1,60 @@
+.card {
+  background-color: #CCFFFF;
+  max-width: 300px;
+  min-width: 220px;
+  border-radius: 16px;
+  width: 100%;
+  background-color: whitesmoke;
+  color: black;
+  margin-top: 24px;
+  margin-left: 16px;
+}
+
+.card:hover {
+  border-radius: 16px;
+  width: 100%;
+}
+
+.card__photo-img {
+  height: 260px;
+  border-radius: 8px;
+  width: 100%;
+  object-fit: cover;
+}
+
+.card__details-name {
+  text-transform: uppercase;
+  color: #21B3B3;
+  font-size: 28px;
+  margin-top: 8px;
+  margin-bottom: 8px;
+  text-align: center;
+}
+
+.card__details-breed {
+  font-size: 18px;
+  text-align: center;
+  margin-top: 8px;
+  margin-bottom: 8px;
+}
+
+.card__details-location {
+  font-size: 16px;
+  text-align: center;
+  margin-top: 8px;
+  margin-bottom: 8px;
+}
+
+.card__favorite {
+  text-align: right;
+  padding-right: 16px;
+  padding-bottom: 8px;
+  cursor: pointer;
+  font-size: 24px;
+}
+
+.toast {
+  background-color: #22B2B3 !important;
+  font-size: 18px !important;
+  color: whitesmoke !important;
+}

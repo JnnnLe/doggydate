@@ -28,7 +28,6 @@ const Card = (props) => {
   let photos = props.photos // some animals do not have photos
   return (
     <div className="card">
-      <Avatar className="avatar" alt={props.name} src={photos.length ? photos[0].medium : null} />
       <div className="info">
         <h4>{props.name !== null ? props.name : null}</h4>
         <div>{props.age} {props.breeds.primary} | {props.contact.address.city}, {props.contact.address.state}</div>
