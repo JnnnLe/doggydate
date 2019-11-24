@@ -3,7 +3,7 @@ A MERN (Built in *M*ongoDB, *E*xpress.js, *R*eact.js, and *N*ode) stack applicat
 
 
 ## Installation 
-Use the package managers [npm](https://www.npmjs.com) or [yarn](https://yarnpkg.com/lang/en/) <br>
+Use the package managers [npm](https://www.npmjs.com) or [yarn](https://yarnpkg.com/lang/en/). I usewd yarn and you will need to open two terminal windows to run this application, one for the server and one for the CRA (Create react app). <br>
 
 Installing dependencies <br>
 Back-end: 
@@ -26,7 +26,11 @@ Front-end:
 [Auth0](https://auth0.com/docs) - User Authenication 
 <br>
 [PetFinder](https://www.petfinder.com/developers/) - Authenicated Pet Data
-
+<br>
+You will need your own keys of the following: 
+<br>[MongoDB]: MongoDB USER, MongoDB PASSWORD
+<br>[Auth0]: Auth0 DOMAIN, Auth0 API, and Auth0 IDENTIFIER, Auth0 AUDIENCE
+<br>[PetFinder]: PetFinder CLIENTID, PetFinder SECRET
 
 ## Author and acknowledgements
 Like a raising a baby, my passion project could not be possible with the help of countless friends, mentors and countless open sources. <br>

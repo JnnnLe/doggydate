@@ -3,26 +3,22 @@
 
 @import url('https://fonts.googleapis.com/css?family=Open+Sans');
 
-/* aside {
-  display: inline-block;
-} */
-
 .sidebar {
   position: fixed;
-  width: 25%;
+  width: 360px;
   height: 100vh;
   background: #21B3B3;
   font-size: 0.65em;
 }
 
 .user-avatar {
-  padding: 2.75em 4em 0em 2.55em;
+  margin-top: 64px;
   text-align: center;
 }
   
 img.avatar {
   position: relative;
-  width: 200px;
+  width: 172px;
   border-radius: 50%;
   overflow: hidden;
   box-shadow: 0 0 0 4px rgba(255,255,255,0.2);
@@ -32,8 +28,6 @@ img.avatar {
   position: relative;
   margin: 0 10% 15% 15%;
   text-align: right;
-  top: 27%;
-  transform: translateY(-50%);
   font-weight: bold;
 }
 
@@ -79,4 +73,3 @@ img.avatar {
   bottom: 0;
   background-image: linear-gradient(to right, rgb(73, 190, 190), #C1F8F7)
 }
-

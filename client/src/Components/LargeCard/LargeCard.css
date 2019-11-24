@@ -1,0 +1,44 @@
+.large__card {
+  max-width: 100vh;
+  border-radius: 16px;
+  width: 100%;
+  color: black;
+  flex-direction: row-reverse;
+  flex-wrap: wrap-reverse;
+  margin-top: 24px;
+  margin-left: 16px;
+}
+
+.large__card__photo-img {
+  height: 520px;
+  border-radius: 8px;
+  /* width: 100vh; */
+  /* object-fit: cover; */
+}
+
+ul.thumbs.animated{
+  display: none;
+}
+
+.large__card__details-name {
+  text-transform: uppercase;
+  color: #21B3B3;
+  font-size: 28px;
+  margin-top: 8px;
+  margin-bottom: 8px;
+  text-align: center;
+}
+
+.large__card__details-breed {
+  font-size: 18px;
+  text-align: center;
+  margin-top: 8px;
+  margin-bottom: 8px;
+}
+
+.large__card__details-location {
+  font-size: 16px;
+  text-align: center;
+  margin-top: 8px;
+  margin-bottom: 8px;
+}

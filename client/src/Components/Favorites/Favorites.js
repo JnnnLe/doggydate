@@ -1,8 +1,9 @@
 import React, { useEffect, useState } from 'react'
-import Card from '../Card/Card'
+import LargeCard from '../LargeCard/LargeCard'
 import { useAuth0 } from '../../react-auth0-spa'
 import axios from 'axios'
 import SideBar from '../SideBar/SideBar'
+import './Favorites.css'
 
 const Favorites = () => {
   const { getTokenSilently, user } = useAuth0()
@@ -26,18 +27,15 @@ const Favorites = () => {
   }, [user])
 
   const renderPets = () => {
-    return favorites.map(dog => <Card key={dog.id} {...dog} />)
+    return favorites.map(dog => <LargeCard key={dog.id} {...dog} />)
   }
     return (
       <div className="favorites">
-        <SideBar />
-        <div>
-          <div className="pets">
-            {renderPets()}
-          </div>
-        
+      <SideBar />
+        <div className="favorite__pets">
+          {renderPets()}
         </div>
-      </div>
+        </div>
     )
 }
 
