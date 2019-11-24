@@ -47,8 +47,8 @@ const SmallCard = (props) => {
         <p className="small__card__details-location">{props.contact.address.city}, {props.contact.address.state}</p>
         </div>
       <div className="small__card__favorite">
-      <a id={props.id} onClick={(e)=> AddPetToFavorite(props)}>
-      <FaHeart className="fun" color="#F72067" />
+        <a id={props.id} onClick={(e)=> AddPetToFavorite(props)}>
+        <FaHeart color="#F72067" />
       </a>
       </div>
     </div>

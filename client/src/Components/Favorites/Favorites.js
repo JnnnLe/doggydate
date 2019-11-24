@@ -27,15 +27,16 @@ const Favorites = () => {
   }, [user])
 
   const renderPets = () => {
-    return favorites.map(dog => <LargeCard key={dog.id} {...dog} />)
+    let reversedFavorites = favorites.reverse();
+    return reversedFavorites.map(dog => <LargeCard key={dog.id} {...dog} />)
   }
     return (
       <div className="favorites">
-      <SideBar />
+        <SideBar />
         <div className="favorite__pets">
           {renderPets()}
         </div>
-        </div>
+      </div>
     )
 }
 
