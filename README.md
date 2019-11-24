@@ -37,8 +37,8 @@ PetFinder: PetFinder CLIENTID, PetFinder SECRET
 [MongoDB](https://www.mongodb.com) - Document db, stores data in rich JSON-like documents
 
 ## Author and acknowledgements
-*Like a raising a baby, my passion project could not be possible with the help of countless friends, mentors and countless open sources. 
-Thank you to [Nic](https://github.com/nlacock), [George](https://github.com/gsong), more mentors and friends to be added. 
+Like a raising a baby, my passion project could not be possible with the help of countless friends, mentors and countless open sources. 
+> Thank you to [Nic](https://github.com/nlacock), [George](https://github.com/gsong), more mentors and friends to be added. 
 Special thanks to the people who open source their hardwork, you made it possible for me to build my passion project. Thank you [Frontend Masters](https://github.com/FrontendMasters), [Reactjs](https://reactjs.org), [Expressjs](https://expressjs.com/), [Nodejs](https://nodejs.org/en/), [MongoDB](https://www.mongodb.com/) more to be added.
 
 ## License
