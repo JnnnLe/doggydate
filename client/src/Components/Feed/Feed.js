@@ -5,7 +5,6 @@ import SideBar from '../SideBar/SideBar'
 import './Feed.css'
 import { useAuth0 } from '../../react-auth0-spa'
 
-
 const Feed = () => {
   const { getTokenSilently } = useAuth0()
   const [ zipCode, setZipCode ] = useState('')
@@ -58,9 +57,8 @@ const Feed = () => {
     <div className="feed">
       <SideBar />
       <div>
-        <header> doggydate </header>
         <form onSubmit={getZip}>
-          <input className="search_input" type="text" placeholder="Your newest family member awaits.." 
+          <input className="search_input" type="text" placeholder="Enter zip code" 
           value={zipCode}
           onChange={e => setZipCode(e.target.value)}/>
         </form>

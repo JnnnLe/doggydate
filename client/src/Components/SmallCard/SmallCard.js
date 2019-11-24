@@ -49,7 +49,7 @@ const SmallCard = (props) => {
         </div>
       <div className="card__favorite">
       <a id={props.id} onClick={(e)=> AddPetToFavorite(props)}>
-      <FaHeart size={24} color="red" />
+      <FaHeart className="fun" color="#F72067" />
       </a>
       </div>
     </div>

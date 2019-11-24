@@ -1,13 +1,18 @@
 .card {
-  background: rgb(255,255,255);
-  background: linear-gradient(186deg, rgba(255,255,255,1) 0%, rgba(59,196,196,1) 17%, rgba(33,179,179,1) 100%);  max-width: 300px;
+  background-color: #CCFFFF;
+  max-width: 300px;
   min-width: 220px;
   border-radius: 16px;
   width: 100%;
-  background-color: #22B2B3;
-  color: #fff;
+  background-color: whitesmoke;
+  color: black;
   margin-top: 24px;
   margin-left: 16px;
+}
+
+.card:hover {
+  border-radius: 16px;
+  width: 100%;
 }
 
 .card__photo-img {
@@ -18,18 +23,26 @@
 }
 
 .card__details-name {
+  text-transform: uppercase;
+  color: #21B3B3;
   font-size: 28px;
+  margin-top: 8px;
+  margin-bottom: 8px;
   text-align: center;
 }
 
 .card__details-breed {
   font-size: 18px;
   text-align: center;
+  margin-top: 8px;
+  margin-bottom: 8px;
 }
 
 .card__details-location {
   font-size: 16px;
   text-align: center;
+  margin-top: 8px;
+  margin-bottom: 8px;
 }
 
 .card__favorite {
@@ -37,10 +50,11 @@
   padding-right: 16px;
   padding-bottom: 8px;
   cursor: pointer;
+  font-size: 24px;
 }
 
 .toast {
   background-color: #22B2B3 !important;
   font-size: 18px !important;
-  color: #fff !important;
+  color: whitesmoke !important;
 }
