@@ -29,7 +29,8 @@ const Card = (props) => {
   return (
     <div className="card">
       <div className="info">
-        <h4>{props.name !== null ? props.name : null}</h4>
+        <img src={photos[0].medium}/>
+        <h4>{props.name}</h4>
         <div>{props.age} {props.breeds.primary} | {props.contact.address.city}, {props.contact.address.state}</div>
         <div>{props.gender} - {props.size} - {props.coat} {props.colors.primary}  </div>
         <h4>About</h4>
