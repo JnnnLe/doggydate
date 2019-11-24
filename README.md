@@ -26,11 +26,15 @@ Front-end:
 [Auth0](https://auth0.com/docs) - User Authenication 
 <br>
 [PetFinder](https://www.petfinder.com/developers/) - Authenicated Pet Data
-<br>
-You will need your own keys of the following: 
-<br>[MongoDB](https://www.mongodb.com/): MongoDB USER, MongoDB PASSWORD
-<br>[Auth0](https://auth0.com/docs): Auth0 DOMAIN, Auth0 API, Auth0 IDENTIFIER, Auth0 AUDIENCE
-<br>[PetFinder](https://www.petfinder.com/developers/): PetFinder CLIENTID, PetFinder SECRET
+
+## API Keys
+**You will need your own keys of the following:**
+MongoDB: MongoDB USER, MongoDB PASSWORD
+Auth0: Auth0 DOMAIN, Auth0 API, Auth0 IDENTIFIER, Auth0 AUDIENCE
+PetFinder: PetFinder CLIENTID, PetFinder SECRET
+
+## Database
+[MongoDB](https://www.mongodb.com) - Document db, stores data in rich JSON-like documents
 
 ## Author and acknowledgements
 Like a raising a baby, my passion project could not be possible with the help of countless friends, mentors and countless open sources. <br>
