@@ -28,8 +28,8 @@ const SideBar = () => {
           <nav className="nav">
             <ul>
               <li><a href="#">Welcome {user.name}</a></li>
-              <li><a href="/favorites"> Favorites <FaHeart size={20} />  </a></li>
               <li><a href="/feed"> Home <TiHome size={24} /> </a></li>
+              <li><a href="/favorites"> Favorites <FaHeart size={20} />  </a></li>
               <li><Link onClick={() => logout()}> Logout <GoRocket size={24} /> </Link></li>
             </ul>
           </nav>
