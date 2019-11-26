@@ -47,7 +47,7 @@ const Feed = () => {
     getPets()
   }, [setPets])
 
-  const cleanPets = pets.filter(dog => dog.photos.length > 1 && dog.species === 'Dog')
+  const cleanPets = pets.filter(dog => dog.photos.length > 0 && dog.species === 'Dog')
 
   const renderPets = () => {
     return cleanPets.map(dog => <SmallCard key={dog.id} {...dog} />)
