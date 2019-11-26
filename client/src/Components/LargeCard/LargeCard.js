@@ -45,7 +45,8 @@ const LargeCard = (props) => {
         <p className="large__card__details-location"><b>{props.contact.address.city}, {props.contact.address.state}</b></p>
         <div className="large__card__bio">Hi, I'm {props.name} and I am a {props.age} {props.breeds.primary}. Adopt me below.
         <div clasName="large__card__adopt">
-          <a className="adopt" id={props.id} href={props.url} target="_blank">  ADOPT ME <FaHome color="#21B3B3"/></a></div>
+          <a className="adopt" id={props.id} href={props.url} target="_blank"> <FaDog /></a>
+        </div>
       </div>
       </div>
     </div>
