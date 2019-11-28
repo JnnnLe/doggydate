@@ -24,9 +24,6 @@ ul.thumbs.animated{
   display: none;
 }
 
-.large__card__details {
-}
-
 .large__card__details-name {
   text-transform: uppercase;
   color: #21B3B3;
@@ -51,8 +48,6 @@ ul.thumbs.animated{
 }
 
 .large__card__bio {
-  /* margin: 8px; */
-  /* margin-bottom: 8px; */
   margin-left: 16px;
 }
 
