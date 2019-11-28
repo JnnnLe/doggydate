@@ -1,8 +1,6 @@
 import React from 'react'
-
 import { Link } from 'react-router-dom'
 import './SideBar.css'
-
 import { useAuth0 } from '../../react-auth0-spa'
 import { FaHeart } from "react-icons/fa"
 import { TiHome } from "react-icons/ti"
@@ -21,7 +19,7 @@ const SideBar = () => {
       )}
 
       {isAuthenticated && (
-          <div className="sidebar">
+        <div className="sidebar">
           <header className="user-avatar">
             <img className="avatar" src={user.picture} alt="Profile" />
           </header>
@@ -33,9 +31,8 @@ const SideBar = () => {
               <li><Link onClick={() => logout()}> Logout <GoRocket size={24} /> </Link></li>
             </ul>
           </nav>
-          </div>
+        </div>
       )}
-
     </div>
   )
 }

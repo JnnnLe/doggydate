@@ -1,6 +1,5 @@
 import React from 'react'
 import './SmallCard.css'
-import Avatar from '@material-ui/core/Avatar';
 import { FaHeart } from "react-icons/fa"
 import axios from 'axios'
 import { useAuth0 } from '../../react-auth0-spa'
