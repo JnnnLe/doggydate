@@ -79,6 +79,8 @@ app.post('/feed/user/petId', checkJwt, async (req, res) => {
   }
 })
 
+
+// Calls made to PF API 
 const clientId = process.env.PFCLIENTID
 const clientSecret = process.env.PFSECRET
 
