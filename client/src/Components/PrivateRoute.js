@@ -30,7 +30,7 @@ const PrivateRoute = ({ component: Component, path, ...rest }) => {
   return <Route path={path} render={render} {...rest} />
 }
  
-// Check authorization of user at each private route, if the user is new then register
+// Check authorization of user at each private route, if the user is new then register else, authprize them for navigation
 const registerUser = async (user, fn) => {
   try {
     const token = await fn();
