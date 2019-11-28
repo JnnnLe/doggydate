@@ -38,9 +38,9 @@ PetFinder: PetFinder CLIENTID, PetFinder SECRET
 
 ## Author and acknowledgements
 Like a raising a baby, my passion project could not be possible with the help of countless friends, mentors and countless open sources. 
-> Thank you to [Max](https://github.com/maxjowett), ([Nic](https://github.com/nlacock), and [George](https://github.com/gsong). 
-<p>Special thanks to the people who open source their hardwork, you made it possible for me to build my passion project. Thank you [Frontend Masters](https://github.com/FrontendMasters), [Reactjs](https://reactjs.org), [Expressjs](https://expressjs.com/), [Nodejs](https://nodejs.org/en/), [MongoDB](https://www.mongodb.com/), [Auth0](https://auth0.com/docs), and [PetFinder Organization](https://www.petfinder.com/).
-</p>
+> Thank you to [Max](https://github.com/maxjowett), [Nic](https://github.com/nlacock), and [George](https://github.com/gsong). 
+>**Special thanks** to the people who open source their hardwork, you made it possible for me to build my passion project. Thank you [Frontend Masters](https://github.com/FrontendMasters), [Reactjs](https://reactjs.org), [Expressjs](https://expressjs.com/), [Nodejs](https://nodejs.org/en/), [MongoDB](https://www.mongodb.com/), [Auth0](https://auth0.com/docs), and [PetFinder Organization](https://www.petfinder.com/).
+
 
 
 ## License
