@@ -3,7 +3,7 @@ A MERN (Built in *M*ongoDB, *E*xpress.js, *R*eact.js, and *N*ode) stack applicat
 
 
 ## Installation 
-Use the package managers [npm](https://www.npmjs.com) or [yarn](https://yarnpkg.com/lang/en/). I usewd yarn and you will need to open two terminal windows to run this application, one for the server and one for the CRA (Create react app). <br>
+Use the package managers [npm](https://www.npmjs.com) or [yarn](https://yarnpkg.com/lang/en/). In this example I used yarn. __Note__: You will need to open **two terminal windows** to run this application, one for the server and one for the CRA (Create react app). <br>
 
 Installing dependencies <br>
 Back-end: 
