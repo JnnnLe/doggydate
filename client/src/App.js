@@ -3,9 +3,7 @@ import './App.css'
 import Login from './Components/Login/Login'
 import Feed from './Components/Feed/Feed'
 import Favorites from './Components/Favorites/Favorites'
-
 import PrivateRoute from './Components/PrivateRoute'
-
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom'
 
 const App = () => {

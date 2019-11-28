@@ -3,7 +3,6 @@ import './SmallCard.css'
 import { FaHeart } from "react-icons/fa"
 import axios from 'axios'
 import { useAuth0 } from '../../react-auth0-spa'
-
 import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
