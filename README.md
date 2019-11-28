@@ -26,16 +26,22 @@ Front-end:
 [Auth0](https://auth0.com/docs) - User Authenication 
 <br>
 [PetFinder](https://www.petfinder.com/developers/) - Authenicated Pet Data
-<br>
-You will need your own keys of the following: 
-<br>[MongoDB]: MongoDB USER, MongoDB PASSWORD
-<br>[Auth0]: Auth0 DOMAIN, Auth0 API, and Auth0 IDENTIFIER, Auth0 AUDIENCE
-<br>[PetFinder]: PetFinder CLIENTID, PetFinder SECRET
+
+## API Keys
+**You will need your own keys of the following:**
+MongoDB: MongoDB USER, MongoDB PASSWORD
+Auth0: Auth0 DOMAIN, Auth0 API, Auth0 IDENTIFIER, Auth0 AUDIENCE
+PetFinder: PetFinder CLIENTID, PetFinder SECRET
+
+## Database
+[MongoDB](https://www.mongodb.com) - Document db, stores data in rich JSON-like documents
 
 ## Author and acknowledgements
-Like a raising a baby, my passion project could not be possible with the help of countless friends, mentors and countless open sources. <br>
-Thank you to [Nic](https://github.com/nlacock), [George](https://github.com/gsong), more mentors and friends to be added. <br>
-Special thanks to the people who open source their hardwork, you made it possible for me to build my passion project. Thank you [Frontend Masters](https://github.com/FrontendMasters), [Reactjs](https://reactjs.org), [Expressjs](https://expressjs.com/), [Nodejs](https://nodejs.org/en/), [MongoDB](https://www.mongodb.com/) more to be added.
+Like a raising a baby, my passion project could not be possible with the help of countless friends, mentors and countless open sources. 
+> Thank you to [Nic](https://github.com/nlacock), [George](https://github.com/gsong), more mentors and friends to be added. 
+<p>Special thanks to the people who open source their hardwork, you made it possible for me to build my passion project. Thank you [Frontend Masters](https://github.com/FrontendMasters), [Reactjs](https://reactjs.org), [Expressjs](https://expressjs.com/), [Nodejs](https://nodejs.org/en/), [MongoDB](https://www.mongodb.com/) more to be added.
+</p>
+
 
 ## License
 [MIT](https://choosealicense.com/licenses/mit/)
