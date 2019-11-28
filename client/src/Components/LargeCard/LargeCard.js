@@ -35,7 +35,7 @@ const LargeCard = (props) => {
       {
          photos.map(photo => (
           <div className="large__card__photo-img">
-          <img src={photo.large} height="300px" width="300px"/>
+          <img src={photo.large} height="300px" width="220px"/>
           </div>
         ))
       }
