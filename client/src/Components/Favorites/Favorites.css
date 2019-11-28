@@ -1,5 +1,10 @@
 .favorites {
   display: grid;
-  grid-template-columns: 1fr 2.75fr;
-  background-color: #FFFFFF;
+  grid-template-columns: 360px 1fr;
+  grid-column-gap: 30px;
+}
+
+.favorite__pets {
+  display: inline-flex;
+  flex-wrap: wrap;
 }

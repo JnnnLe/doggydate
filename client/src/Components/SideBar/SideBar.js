@@ -21,23 +21,19 @@ const SideBar = () => {
       )}
 
       {isAuthenticated && (
-        <div>
-          <main className="main">
-          <aside className="sidebar">
+          <div className="sidebar">
           <header className="user-avatar">
             <img className="avatar" src={user.picture} alt="Profile" />
           </header>
           <nav className="nav">
             <ul>
-              <li className="active"><a href="#">Welcome {user.name}</a></li>
-              <li className="favorites"><a href="/favorites"> Favorites <FaHeart size={20} />  </a></li>
-              <li className="home"><a href="/feed"> Home <TiHome size={24} /> </a></li>
-              <li className="logout"><Link onClick={() => logout()}> Logout <GoRocket size={24} /> </Link></li>
+              <li><a href="#">Welcome {user.name}</a></li>
+              <li><a href="/feed"> Home <TiHome size={24} /> </a></li>
+              <li><a href="/favorites"> Favorites <FaHeart size={20} />  </a></li>
+              <li><Link onClick={() => logout()}> Logout <GoRocket size={24} /> </Link></li>
             </ul>
           </nav>
-          </aside>
-          </main>
-        </div>
+          </div>
       )}
 
     </div>
